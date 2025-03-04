@@ -25,4 +25,5 @@ defined( 'ABSPATH' ) || exit;
 class WC_VRPayment_Integration {
 	const VRPAYMENT_LIGHTBOX = 'lightbox';
 	const VRPAYMENT_IFRAME = 'iframe';
+	const VRPAYMENT_PAYMENTPAGE = 'payment_page';
 }

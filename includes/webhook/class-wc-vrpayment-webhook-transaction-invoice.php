@@ -87,11 +87,11 @@ class WC_VRPayment_Webhook_Transaction_Invoice extends WC_VRPayment_Webhook_Orde
 		/* @var \VRPayment\Sdk\Model\TransactionInvoice $transaction_invoice */ //phpcs:ignore
 		switch ( $transaction_invoice->getState() ) {
 			case \VRPayment\Sdk\Model\TransactionInvoiceState::DERECOGNIZED:
-				$order->add_order_note( esc_html__( 'Invoice Not Settled' ) );
+				$order->add_order_note( esc_html__( 'Invoice Not Settled', 'woo-vrpayment' ) );
 				break;
 			case \VRPayment\Sdk\Model\TransactionInvoiceState::NOT_APPLICABLE:
 			case \VRPayment\Sdk\Model\TransactionInvoiceState::PAID:
-				$order->add_order_note( esc_html__( 'Invoice Settled' ) );
+				$order->add_order_note( esc_html__( 'Invoice Settled', 'woo-vrpayment' ) );
 				break;
 			default:
 				// Nothing to do.

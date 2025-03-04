@@ -24,6 +24,9 @@ class WC_VRPayment_Helper {
 	const VRPAYMENT_SHOP_SYSTEM = 'x-meta-shop-system';
 	const VRPAYMENT_SHOP_SYSTEM_VERSION = 'x-meta-shop-system-version';
 	const VRPAYMENT_SHOP_SYSTEM_AND_VERSION = 'x-meta-shop-system-and-version';
+	const VRPAYMENT_CHECKOUT_VERSION = 'x-checkout-type';
+	const VRPAYMENT_CHECKOUT_TYPE_BLOCKS = 'blocks';
+	const VRPAYMENT_CHECKOUT_TYPE_LEGACY = 'legacy';
 
 	/**
 	 * Instance.
@@ -575,4 +578,46 @@ class WC_VRPayment_Helper {
 			self::VRPAYMENT_SHOP_SYSTEM_AND_VERSION => 'woocommerce-' . $major_version . '.' . $minor_version,
 		);
 	}
+
+	/**
+	* Get WooCommerce order statuses in JSON format.
+	*
+	* This method retrieves the WooCommerce order statuses, applies any filters,
+	* and returns them as an array with structured data.
+	*
+	* @return array[] An array of WooCommerce order statuses, where each status is represented
+	*                 as an associative array containing:
+	*                 - 'key' (string)   : The order status key.
+	*                 - 'label' (string) : The human-readable label for the status.
+	*                 - 'type' (string)  : The type of status ('core' if it starts with 'wc-', otherwise 'custom').
+	*/
+	public function get_woocommerce_order_statuses_json() {
+		$woocommerce_statuses = apply_filters( 'vrpayment_woocommerce_statuses', array() );
+		$excluded_statuses = array( 
+			'wc-vrpaym-manual',
+			'wc-vrpaym-redirected',
+			'wc-vrpaym-waiting',
+			'wc-pending',
+			'wc-processing',
+			'wc-on-hold',
+			'wc-completed',
+			'wc-cancelled',
+			'wc-refunded',
+			'wc-failed',
+			'wc-trash',
+			'wc-checkout-draft'
+		);
+
+		return array_map( function( $key, $value ) use ( $excluded_statuses ) {
+				return array(
+					'key'  => $key,
+					'label' => ucfirst( $value ),
+					'type' => in_array( $key, $excluded_statuses, true ) ? 'core' : 'custom',
+				);
+			},
+			array_keys( $woocommerce_statuses ),
+			$woocommerce_statuses
+		);
+	}
+
 }

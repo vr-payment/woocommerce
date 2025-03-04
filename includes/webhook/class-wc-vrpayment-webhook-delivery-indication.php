@@ -87,8 +87,9 @@ class WC_VRPayment_Webhook_Delivery_Indication extends WC_VRPayment_Webhook_Orde
 	 * @return void
 	 */
 	protected function review( WC_Order $order ) {
-		$status = apply_filters( 'wc_vrpayment_manual_task_status', 'vrpaym-manual', $order );
 		$order->add_meta_data( '_vrpayment_manual_check', true );
+		$status = apply_filters( 'wc_vrpayment_manual_task_status', 'vrpaym-manual', $order );
+		$status = apply_filters( 'vrpayment_order_update_status', $order, $status, esc_html__( 'A manual decision about whether to accept the payment is required.', 'woo-vrpayment' ) );
 		$order->update_status( $status, esc_html__( 'A manual decision about whether to accept the payment is required.', 'woo-vrpayment' ) );
 	}
 }

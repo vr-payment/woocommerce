@@ -90,11 +90,11 @@ class WC_VRPayment_Webhook_Transaction_Invoice_Strategy extends WC_VRPayment_Web
 	protected function process_order_related_inner( WC_Order $order, \VRPayment\Sdk\Model\TransactionInvoice $transaction_invoice, WC_VRPayment_Webhook_Request $request ) {
 		switch ( $request->get_state() ) {
 			case \VRPayment\Sdk\Model\TransactionInvoiceState::DERECOGNIZED:
-				$order->add_order_note( __( 'Invoice Not Settled' ) );
+				$order->add_order_note( __( 'Invoice Not Settled', 'woo-vrpayment' ) );
 				break;
 			case \VRPayment\Sdk\Model\TransactionInvoiceState::NOT_APPLICABLE:
 			case \VRPayment\Sdk\Model\TransactionInvoiceState::PAID:
-				$order->add_order_note( __( 'Invoice Settled' ) );
+				$order->add_order_note( __( 'Invoice Settled', 'woo-vrpayment' ) );
 				break;
 			default:
 				// Nothing to do.

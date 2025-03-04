@@ -105,8 +105,8 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 		if ( ! $order->get_meta( '_vrpayment_confirmed', true ) && ! $order->get_meta( '_vrpayment_authorized', true ) ) {
 			do_action( 'wc_vrpayment_confirmed', $this->load_entity( $request ), $order );
 			$order->add_meta_data( '_vrpayment_confirmed', 'true', true );
-			$status = apply_filters( 'wc_vrpayment_confirmed_status', 'vrpaym-redirected', $order );
-			$order->update_status( $status );
+			$default_status = apply_filters( 'wc_vrpayment_confirmed_status', 'vrpaym-redirected', $order );
+			apply_filters( 'vrpayment_order_update_status', $order, \VRPayment\Sdk\Model\TransactionState::CONFIRMED, $default_status );
 			wc_maybe_reduce_stock_levels( $order->get_id() );
 		}
 	}
@@ -120,9 +120,9 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	protected function authorize( WC_VRPayment_Webhook_Request $request, WC_Order $order ) {
 		if ( ! $order->get_meta( '_vrpayment_authorized', true ) ) {
 			do_action( 'wc_vrpayment_authorized', $this->load_entity( $request ), $order );
-			$status = apply_filters( 'wc_vrpayment_authorized_status', 'on-hold', $order );
 			$order->add_meta_data( '_vrpayment_authorized', 'true', true );
-			$order->update_status( $status );
+			$default_status = apply_filters( 'wc_vrpayment_authorized_status', 'on-hold', $order );
+			apply_filters( 'vrpayment_order_update_status', $order, \VRPayment\Sdk\Model\TransactionState::AUTHORIZED, $default_status );
 			wc_maybe_reduce_stock_levels( $order->get_id() );
 			if ( isset( WC()->cart ) ) {
 				WC()->cart->empty_cart();
@@ -140,8 +140,8 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	protected function waiting( WC_VRPayment_Webhook_Request $request, WC_Order $order ) {
 		if ( ! $order->get_meta( '_vrpayment_manual_check', true ) ) {
 			do_action( 'wc_vrpayment_completed', $this->load_entity( $request ), $order );
-			$status = apply_filters( 'wc_vrpayment_completed_status', 'processing', $order );
-			$order->update_status( $status );
+			$default_status = apply_filters( 'wc_vrpayment_completed_status', 'processing', $order );
+			apply_filters( 'vrpayment_order_update_status', $order, \VRPayment\Sdk\Model\TransactionState::COMPLETED, $default_status );
 		}
 	}
 
@@ -154,8 +154,8 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	 */
 	protected function decline( WC_VRPayment_Webhook_Request $request, WC_Order $order ) {
 		do_action( 'wc_vrpayment_declined', $this->load_entity( $request ), $order );
-		$status = apply_filters( 'wc_vrpayment_decline_status', 'cancelled', $order );
-		$order->update_status( $status );
+		$default_status = apply_filters( 'wc_vrpayment_decline_status', 'cancelled', $order );
+		apply_filters( 'vrpayment_order_update_status', $order, \VRPayment\Sdk\Model\TransactionState::DECLINE, $default_status );
 		WC_VRPayment_Helper::instance()->maybe_restock_items_for_order( $order );
 	}
 
@@ -168,9 +168,16 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	 */
 	protected function failed( WC_VRPayment_Webhook_Request $request, WC_Order $order ) {
 		do_action( 'wc_vrpayment_failed', $this->load_entity( $request ), $order );
-		if ( $order->get_status( 'edit' ) == 'pending' || $order->get_status( 'edit' ) == 'vrpaym-redirected' ) {
-			$status = apply_filters( 'wc_vrpayment_failed_status', 'failed', $order );
-			$order->update_status( $status );
+		$valid_order_statuses = array(
+			// Default pending status.
+			'pending',
+			// Custom order statuses mapped.
+			apply_filters( 'vrpayment_wc_status_for_transaction', 'confirmed' ),
+			apply_filters( 'vrpayment_wc_status_for_transaction', 'failed' )
+		);
+		if ( in_array( $order->get_status( 'edit' ), $valid_order_statuses ) ) {
+			$default_status = apply_filters( 'wc_vrpayment_failed_status', 'failed', $order );
+			apply_filters( 'vrpayment_order_update_status', $order, \VRPayment\Sdk\Model\TransactionState::FAILED, $default_status, );
 			WC_VRPayment_Helper::instance()->maybe_restock_items_for_order( $order );
 		}
 	}
@@ -196,8 +203,8 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	 * @return void
 	 */
 	protected function voided( WC_VRPayment_Webhook_Request $request, WC_Order $order ) {
-		$status = apply_filters( 'wc_vrpayment_voided_status', 'cancelled', $order );
-		$order->update_status( $status );
+		$default_status = apply_filters( 'wc_vrpayment_voided_status', 'cancelled', $order );
+		apply_filters( 'vrpayment_order_update_status', $order, \VRPayment\Sdk\Model\TransactionState::VOIDED, $default_status );
 		do_action( 'wc_vrpayment_voided', $this->load_entity( $request ), $order );
 	}
 }
