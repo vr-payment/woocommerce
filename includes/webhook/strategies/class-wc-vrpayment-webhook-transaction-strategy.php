@@ -39,13 +39,14 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	/**
 	 * Process the webhook request.
 	 *
-	 * @param WC_VRPayment_Webhook_Request $request The webhook request object.
+	 * @param \VRPayment\Sdk\Model\Transaction $transaction The webhook request object.
 	 * @return mixed The result of the processing.
 	 */
 	public function process( WC_VRPayment_Webhook_Request $request ) {
 		$order = $this->get_order( $request );
+		$entity = $this->load_entity( $request );
 		if ( false != $order && $order->get_id() ) {
-			$this->process_order_related_inner( $order, $request );
+			$this->process_order_related_inner( $order, $entity );
 		}
 	}
 
@@ -53,37 +54,38 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	 * Process order related inner.
 	 *
 	 * @param WC_Order $order order.
-	 * @param WC_VRPayment_Webhook_Request $request request.
+	 * @param mixed $transaction transaction.
 	 * @return void
 	 * @throws Exception Exception.
 	 */
-	protected function process_order_related_inner( WC_Order $order, WC_VRPayment_Webhook_Request $request ) {
+	protected function process_order_related_inner( WC_Order $order, $transaction ) {
 		$transaction_info = WC_VRPayment_Entity_Transaction_Info::load_by_order_id( $order->get_id() );
-		if ( $request->get_state() != $transaction_info->get_state() ) {
-			switch ( $request->get_state() ) {
+		$transaction_state = $transaction->getState();
+		if ( $transaction_state != $transaction_info->get_state() ) {
+			switch ( $transaction_state ) {
 				case \VRPayment\Sdk\Model\TransactionState::CONFIRMED:
 				case \VRPayment\Sdk\Model\TransactionState::PROCESSING:
-					$this->confirm( $request, $order );
+					$this->confirm( $transaction, $order );
 					break;
 				case \VRPayment\Sdk\Model\TransactionState::AUTHORIZED:
-					$this->authorize( $request, $order );
+					$this->authorize( $transaction, $order );
 					break;
 				case \VRPayment\Sdk\Model\TransactionState::DECLINE:
-					$this->decline( $request, $order );
+					$this->decline( $transaction, $order );
 					break;
 				case \VRPayment\Sdk\Model\TransactionState::FAILED:
-					$this->failed( $request, $order );
+					$this->failed( $transaction, $order );
 					break;
 				case \VRPayment\Sdk\Model\TransactionState::FULFILL:
-					$this->authorize( $request, $order );
-					$this->fulfill( $request, $order );
+					$this->authorize( $transaction, $order );
+					$this->fulfill( $transaction, $order );
 					break;
 				case \VRPayment\Sdk\Model\TransactionState::VOIDED:
-					$this->voided( $request, $order );
+					$this->voided( $transaction, $order );
 					break;
 				case \VRPayment\Sdk\Model\TransactionState::COMPLETED:
-					$this->authorize( $request, $order );
-					$this->waiting( $request, $order );
+					$this->authorize( $transaction, $order );
+					$this->waiting( $transaction, $order );
 					break;
 				default:
 					// Nothing to do.
@@ -91,19 +93,19 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 			}
 		}
 
-		WC_VRPayment_Service_Transaction::instance()->update_transaction_info( $this->load_entity( $request ), $order );
+		WC_VRPayment_Service_Transaction::instance()->update_transaction_info( $transaction, $order );
 	}
 
 	/**
 	 * Confirm.
 	 *
-	 * @param WC_VRPayment_Webhook_Request $request request.
+	 * @param \VRPayment\Sdk\Model\Transaction $transaction transaction.
 	 * @param WC_Order $order order.
 	 * @return void
 	 */
-	protected function confirm( WC_VRPayment_Webhook_Request $request, WC_Order $order ) {
+	protected function confirm( \VRPayment\Sdk\Model\Transaction $transaction, WC_Order $order ) {
 		if ( ! $order->get_meta( '_vrpayment_confirmed', true ) && ! $order->get_meta( '_vrpayment_authorized', true ) ) {
-			do_action( 'wc_vrpayment_confirmed', $this->load_entity( $request ), $order );
+			do_action( 'wc_vrpayment_confirmed', $transaction, $order );
 			$order->add_meta_data( '_vrpayment_confirmed', 'true', true );
 			$default_status = apply_filters( 'wc_vrpayment_confirmed_status', 'vrpaym-redirected', $order );
 			apply_filters( 'vrpayment_order_update_status', $order, \VRPayment\Sdk\Model\TransactionState::CONFIRMED, $default_status );
@@ -114,12 +116,12 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	/**
 	 * Authorize.
 	 *
-	 * @param WC_VRPayment_Webhook_Request $request request.
+	 * @param \VRPayment\Sdk\Model\Transaction $transaction transaction.
 	 * @param \WC_Order $order order.
 	 */
-	protected function authorize( WC_VRPayment_Webhook_Request $request, WC_Order $order ) {
+	protected function authorize( \VRPayment\Sdk\Model\Transaction $transaction, WC_Order $order ) {
 		if ( ! $order->get_meta( '_vrpayment_authorized', true ) ) {
-			do_action( 'wc_vrpayment_authorized', $this->load_entity( $request ), $order );
+			do_action( 'wc_vrpayment_authorized', $transaction, $order );
 			$order->add_meta_data( '_vrpayment_authorized', 'true', true );
 			$default_status = apply_filters( 'wc_vrpayment_authorized_status', 'on-hold', $order );
 			apply_filters( 'vrpayment_order_update_status', $order, \VRPayment\Sdk\Model\TransactionState::AUTHORIZED, $default_status );
@@ -133,13 +135,13 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	/**
 	 * Waiting.
 	 *
-	 * @param WC_VRPayment_Webhook_Request $request request.
+	 * @param \VRPayment\Sdk\Model\Transaction $transaction transaction.
 	 * @param WC_Order $order order.
 	 * @return void
 	 */
-	protected function waiting( WC_VRPayment_Webhook_Request $request, WC_Order $order ) {
+	protected function waiting( \VRPayment\Sdk\Model\Transaction $transaction, WC_Order $order ) {
 		if ( ! $order->get_meta( '_vrpayment_manual_check', true ) ) {
-			do_action( 'wc_vrpayment_completed', $this->load_entity( $request ), $order );
+			do_action( 'wc_vrpayment_completed', $transaction, $order );
 			$default_status = apply_filters( 'wc_vrpayment_completed_status', 'processing', $order );
 			apply_filters( 'vrpayment_order_update_status', $order, \VRPayment\Sdk\Model\TransactionState::COMPLETED, $default_status );
 		}
@@ -148,12 +150,12 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	/**
 	 * Decline.
 	 *
-	 * @param WC_VRPayment_Webhook_Request $request request.
+	 * @param \VRPayment\Sdk\Model\Transaction $transaction transaction.
 	 * @param WC_Order $order order.
 	 * @return void
 	 */
-	protected function decline( WC_VRPayment_Webhook_Request $request, WC_Order $order ) {
-		do_action( 'wc_vrpayment_declined', $this->load_entity( $request ), $order );
+	protected function decline( \VRPayment\Sdk\Model\Transaction $transaction, WC_Order $order ) {
+		do_action( 'wc_vrpayment_declined', $transaction, $order );
 		$default_status = apply_filters( 'wc_vrpayment_decline_status', 'cancelled', $order );
 		apply_filters( 'vrpayment_order_update_status', $order, \VRPayment\Sdk\Model\TransactionState::DECLINE, $default_status );
 		WC_VRPayment_Helper::instance()->maybe_restock_items_for_order( $order );
@@ -162,12 +164,12 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	/**
 	 * Failed.
 	 *
-	 * @param WC_VRPayment_Webhook_Request $request request.
+	 * @param \VRPayment\Sdk\Model\Transaction $transaction transaction.
 	 * @param WC_Order $order order.
 	 * @return void
 	 */
-	protected function failed( WC_VRPayment_Webhook_Request $request, WC_Order $order ) {
-		do_action( 'wc_vrpayment_failed', $this->load_entity( $request ), $order );
+	protected function failed( \VRPayment\Sdk\Model\Transaction $transaction, WC_Order $order ) {
+		do_action( 'wc_vrpayment_failed', $transaction, $order );
 		$valid_order_statuses = array(
 			// Default pending status.
 			'pending',
@@ -185,26 +187,26 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	/**
 	 * Fulfill.
 	 *
-	 * @param WC_VRPayment_Webhook_Request $request request.
+	 * @param \VRPayment\Sdk\Model\Transaction $transaction transaction.
 	 * @param WC_Order $order order.
 	 * @return void
 	 */
-	protected function fulfill( WC_VRPayment_Webhook_Request $request, WC_Order $order ) {
-		do_action( 'wc_vrpayment_fulfill', $this->load_entity( $request ), $order );
+	protected function fulfill( \VRPayment\Sdk\Model\Transaction $transaction, WC_Order $order ) {
+		do_action( 'wc_vrpayment_fulfill', $transaction, $order );
 		// Sets the status to procesing or complete depending on items.
-		$order->payment_complete( $request->get_entity_id() );
+		$order->payment_complete( $transaction->getId() );
 	}
 
 	/**
 	 * Voided.
 	 *
-	 * @param WC_VRPayment_Webhook_Request $request request.
+	 * @param \VRPayment\Sdk\Model\Transaction $transaction transaction.
 	 * @param WC_Order $order order.
 	 * @return void
 	 */
-	protected function voided( WC_VRPayment_Webhook_Request $request, WC_Order $order ) {
+	protected function voided( \VRPayment\Sdk\Model\Transaction $transaction, WC_Order $order ) {
 		$default_status = apply_filters( 'wc_vrpayment_voided_status', 'cancelled', $order );
 		apply_filters( 'vrpayment_order_update_status', $order, \VRPayment\Sdk\Model\TransactionState::VOIDED, $default_status );
-		do_action( 'wc_vrpayment_voided', $this->load_entity( $request ), $order );
+		do_action( 'wc_vrpayment_voided', $transaction, $order );
 	}
 }

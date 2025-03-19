@@ -3,7 +3,7 @@ Contributors: VR Payment GmbH
 Tags: woocommerce VRPay, woocommerce, VRPay, payment, e-commerce, webshop, psp, invoice, packing slips, pdf, customer invoice, processing
 Requires at least: 4.7
 Tested up to: 6.7
-Stable tag: 3.3.6
+Stable tag: 3.3.7
 License: Apache-2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -23,7 +23,7 @@ To use this extension, a VRPay account is required. Sign up on [VRPay](https://g
 
 == Documentation ==
 
-Additional documentation for this plugin is available [here](https://gateway.vr-payment.de/doc/woocommerce/3.3.6/docs/en/documentation.html).
+Additional documentation for this plugin is available [here](https://gateway.vr-payment.de/doc/woocommerce/3.3.7/docs/en/documentation.html).
 
 == External Services ==
 
@@ -81,5 +81,9 @@ Enquiries about our terms of use can be made on the [VRPay terms of use site](ht
 == Changelog ==
 
 
-= 3.3.6 - Mar 4 2025 =
-- [Bugfix] Correct default status for confirmed and fulfill
+= 3.3.7 - Mar 19 2025 =
+- [Bugfix] Fix for incorrect statuses being set upon completion
+- [Tested Against] PHP 8.2
+- [Tested Against] Wordpress 6.7
+- [Tested Against] Woocommerce 9.7.0
+- [Tested Against] PHP SDK 4.6.0
