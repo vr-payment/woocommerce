@@ -32,7 +32,7 @@
 = 1.0.7 - December 01, 2017 =
 
 * Fix - Order status transitions after manual task
-* Dev - Updated to VRPay SDK 1.1.1
+* Dev - Updated to VRPayment SDK 1.1.1
 
 = 1.0.8 - December 04, 2017 =
 
@@ -46,7 +46,7 @@
 = 1.0.10 - January 24, 2018 =
 
 * Fix - First and last name not updated correctly during checkout
-* Dev - Updated to VRPay SDK 1.1.2
+* Dev - Updated to VRPayment SDK 1.1.2
 
 = 1.0.11 - January 30, 2018 =
 
@@ -69,7 +69,7 @@
 * Fix - Order Pay process
 * Tweak - Additional Hooks to use with other plugins
 * Dev - Internal Structure Changes
-* Dev - Updated to VRPay SDK 1.1.6
+* Dev - Updated to VRPayment SDK 1.1.6
 
 = 1.1.1 - April 20, 2018 =
 
@@ -98,11 +98,11 @@
 = 1.1.6 - July 19, 2018 =
 
 * Tweak - Updated settings page
-* Dev - Updated to VRPay SDK 1.1.8
+* Dev - Updated to VRPayment SDK 1.1.8
 
 = 1.1.7 - July 19, 2018 =
 
-* Dev - Updated to VRPay SDK 1.1.9
+* Dev - Updated to VRPayment SDK 1.1.9
 
 = 1.1.8 - August 16, 2018 =
 
@@ -124,7 +124,7 @@
 
 = 1.1.12 - November 13, 2018 =
 
-* Feature - Added option to send global product attributes to VRPay
+* Feature - Added option to send global product attributes to VRPayment
 * Tweak - Improved customer experience if the payment fails.
 
 = 1.1.13 - November 16, 2018 =
@@ -671,7 +671,7 @@ Tested against:
 = 2.1.23 - August 23, 2023 =
 
 * [Features] Support of Wordpress 6.3.0
-* [Features] Support for v8.0.0. Caveat - we dot not support checkout blocks at the current time. If VRPay payment methods do not appear on the checkout, replace the blocks with the checkout shortcode.
+* [Features] Support for v8.0.0. Caveat - we dot not support checkout blocks at the current time. If VRPayment payment methods do not appear on the checkout, replace the blocks with the checkout shortcode.
 * [BugFix] Fix the error caused by an incorrect query statement when attempting to load an attribute ID.
 
 * [Tested Against] PHP 8.0.28

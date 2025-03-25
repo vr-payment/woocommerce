@@ -124,7 +124,7 @@ class WC_VRPayment_Admin_Document {
 			: 'shop_order';
 		add_meta_box(
 			'woocommerce-order-vrpayment-documents',
-			__( 'VRPay Documents', 'woo-vrpayment' ),
+			__( 'VRPayment Documents', 'woo-vrpayment' ),
 			array(
 				__CLASS__,
 				'output',
@@ -257,7 +257,7 @@ class WC_VRPayment_Admin_Document {
 		} catch ( Exception $e ) {
 			$message = $e->getMessage();
 			$cleaned = preg_replace( '/^\[[A-Fa-f\d\-]+\] /', '', $message );
-			wp_die( esc_html__( 'Could not fetch the document from VRPay.', 'woo-vrpayment' ) . ' ' . esc_textarea( $cleaned ) );
+			wp_die( esc_html__( 'Could not fetch the document from VRPayment.', 'woo-vrpayment' ) . ' ' . esc_textarea( $cleaned ) );
 		}
 
 		$refer = isset( $_GET['refer'] ) ? sanitize_key( wp_unslash( $_GET['refer'] ) ) : 0;

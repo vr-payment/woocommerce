@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: VRPay\n"
+"Project-Id-Version: VRPayment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-30 16:16+0100\n"
 "PO-Revision-Date: 2021-11-30 16:16+0100\n"
@@ -45,8 +45,8 @@ msgid "Woocommerce %s+ is required. (You're running version %s)"
 msgstr "Woocommerce %s+ est nécessaire. (Vous utilisez la version %s)"
 
 #: includes/class-wc-vrpayment-migration.php:116
-msgid "Could not activate plugin VRPay."
-msgstr "Impossible d'activer le plugin VRPay."
+msgid "Could not activate plugin VRPayment."
+msgstr "Impossible d'activer le plugin VRPayment."
 
 #: includes/class-wc-vrpayment-migration.php:118
 msgid "Please check the following requirements before activating:"
@@ -157,8 +157,8 @@ msgid "vrpayment Documents"
 msgstr "vrpayment Documents"
 
 #: includes/admin/class-wc-vrpayment-admin-document.php:202
-msgid "Could not fetch the document from VRPay."
-msgstr "Impossible de récupérer le document de VRPay."
+msgid "Could not fetch the document from VRPayment."
+msgstr "Impossible de récupérer le document de VRPayment."
 
 #: includes/admin/class-wc-vrpayment-admin.php:133
 msgid "There is a completion/void in progress."
@@ -198,8 +198,8 @@ msgstr "Paramètres"
 
 #: includes/admin/class-wc-vrpayment-admin.php:256
 #: includes/admin/class-wc-vrpayment-admin.php:267
-msgid "Send attribute to VRPay."
-msgstr "Envoyer l'attribut à VRPay."
+msgid "Send attribute to VRPayment."
+msgstr "Envoyer l'attribut à VRPayment."
 
 #: includes/admin/class-wc-vrpayment-admin-refund.php:60
 msgid "There is a refund in progress."
@@ -326,8 +326,8 @@ msgid "Transaction"
 msgstr "Transaction"
 
 #: includes/admin/class-wc-vrpayment-admin-transaction.php:116
-msgid "View in VRPay"
-msgstr "Voir dans VRPay"
+msgid "View in VRPayment"
+msgstr "Voir dans VRPayment"
 
 #: includes/admin/class-wc-vrpayment-admin-transaction.php:162
 msgid "Authorized"
@@ -501,28 +501,28 @@ msgstr "Voir"
 
 #: views/admin-notices/round-subtotal-warning.php:15
 msgid ""
-"The VRPay payment method are not available, if the taxes are rounded at "
+"The VRPayment payment method are not available, if the taxes are rounded at "
 "subtotal level. Please disable the 'Round tax at subtotal level, instead of "
-"rounding per line' in the tax settings to enable the VRPay payment methods."
-msgstr " Les méthodes de paiement VRPay ne sont pas disponibles si les taxes sont arrondies  "
+"rounding per line' in the tax settings to enable the VRPayment payment methods."
+msgstr " Les méthodes de paiement VRPayment ne sont pas disponibles si les taxes sont arrondies  "
 " au niveau du sous-total. Veuillez désactiver l'option 'Arrondir la taxe au niveau du sous-total, au lieu de  "
-" Arrondir la taxe au niveau du sous-total, au lieu d'arrondir par ligne' dans les paramètres de taxe pour activer les méthodes de paiement VRPay. "
+" Arrondir la taxe au niveau du sous-total, au lieu d'arrondir par ligne' dans les paramètres de taxe pour activer les méthodes de paiement VRPayment. "
 
 #: views/admin-notices/migration-failed.php:15
-msgid "There was an issue executing the migration for VRPay."
-msgstr "Il y a eu un problème lors de l'exécution de la migration pour VRPay."
+msgid "There was an issue executing the migration for VRPayment."
+msgstr "Il y a eu un problème lors de l'exécution de la migration pour VRPayment."
 
 #: views/admin-notices/plugin-deactivated.php:14
-msgid "VRPay deactivated because it depends on WooCommerce."
-msgstr "VRPay désactivé car il dépend de WooCommerce."
+msgid "VRPayment deactivated because it depends on WooCommerce."
+msgstr "VRPayment désactivé car il dépend de WooCommerce."
 
 #. Name of the plugin
-msgid "VRPay"
-msgstr "VRPay"
+msgid "VRPayment"
+msgstr "VRPayment"
 
 #. Description of the plugin
-msgid "Process WooCommerce payments with VRPay."
-msgstr "Traiter les paiements WooCommerce avec VRPay."
+msgid "Process WooCommerce payments with VRPayment."
+msgstr "Traiter les paiements WooCommerce avec VRPayment."
 
 #. URI of the plugin
 msgid "https://wordpress.org/plugins/woo-vrpayment"
@@ -566,8 +566,8 @@ msgid "Integration Options"
 msgstr "Options d'intégration"
 
 #: views/admin-notices/round-subtotal-warning.php:15
-msgid "The VRPay payment methods are not available, if the taxes are rounded at subtotal level. Please disable the 'Round tax at subtotal level, instead of rounding per line' in the tax settings to enable the VRPay payment methods."
-msgstr "Les méthodes de paiement VRPay ne sont pas disponibles si les taxes sont arrondies au niveau du sous-total. Veuillez désactiver l'option « Arrondir la taxe au niveau du sous-total, au lieu de l'arrondir par ligne » dans les paramètres de la taxe pour activer les méthodes de paiement VRPay."
+msgid "The VRPayment payment methods are not available, if the taxes are rounded at subtotal level. Please disable the 'Round tax at subtotal level, instead of rounding per line' in the tax settings to enable the VRPayment payment methods."
+msgstr "Les méthodes de paiement VRPayment ne sont pas disponibles si les taxes sont arrondies au niveau du sous-total. Veuillez désactiver l'option « Arrondir la taxe au niveau du sous-total, au lieu de l'arrondir par ligne » dans les paramètres de la taxe pour activer les méthodes de paiement VRPayment."
 
 #: woocommerce-vrpayment.php:296
 msgctxt "Order status"
@@ -597,10 +597,10 @@ msgstr[0] "Payment en Attente <span class=\"count\">(%s)</span>"
 msgstr[1] "Payment en Attente <span class=\"count\">(%s)</span>"
 
 #: woocommerce-vrpayment.php:271
-msgid "VRPay Processing <span class=\"count\">(%s)</span>"
-msgid_plural "VRPay Processing <span class=\"count\">(%s)</span>"
-msgstr[0] "VRPay est en cours de traitement <span class=\"count\">(%s)</span>"
-msgstr[1] "VRPay est en cours de traitement <span class=\"count\">(%s)</span>"
+msgid "VRPayment Processing <span class=\"count\">(%s)</span>"
+msgid_plural "VRPayment Processing <span class=\"count\">(%s)</span>"
+msgstr[0] "VRPayment est en cours de traitement <span class=\"count\">(%s)</span>"
+msgstr[1] "VRPayment est en cours de traitement <span class=\"count\">(%s)</span>"
 
 #: includes/class-wc-vrpayment-cron.php:31
 msgid "Every Five Minutes"
@@ -624,16 +624,16 @@ msgstr "Installer l'extension PHP cUrl ou s'assurer que la fonction « stream_so
 
 #: includes/admin/class-wc-vrpayment-admin.php:262
 #: includes/admin/class-wc-vrpayment-admin.php:270
-msgid "Should this product attribute be sent to VRPay as line item attribute?"
-msgstr "Cet attribut de produit doit-il être envoyé à VRPay en tant qu'attribut d'article ?"
+msgid "Should this product attribute be sent to VRPayment as line item attribute?"
+msgstr "Cet attribut de produit doit-il être envoyé à VRPayment en tant qu'attribut d'article ?"
 
 #: includes/admin/class-wc-vrpayment-admin-document.php:93
-msgid "VRPay Documents"
-msgstr "VRPay Documents"
+msgid "VRPayment Documents"
+msgstr "VRPayment Documents"
 
 #: includes/admin/class-wc-vrpayment-admin-transaction.php:43
-msgid "VRPay Transaction"
-msgstr "VRPay Transaction"
+msgid "VRPayment Transaction"
+msgstr "VRPayment Transaction"
 
 #: includes/class-wc-vrpayment-gateway.php:143
 #: includes/admin/class-wc-vrpayment-admin-notices.php:104

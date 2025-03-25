@@ -176,7 +176,7 @@ class WC_VRPayment_Service_Webhook extends WC_VRPayment_Service_Abstract {
 	}
 
 	/**
-	 * Installs the necessary webhooks in VRPay.
+	 * Installs the necessary webhooks in VRPayment.
 	 */
 	public function install() {
 		$space_id = get_option( WooCommerce_VRPayment::VRPAYMENT_CK_SPACE_ID );

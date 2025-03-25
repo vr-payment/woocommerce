@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Class WC_VRPayment_Download_Helper.
- * This class provides function to download documents from VRPay
+ * This class provides function to download documents from VRPayment
  *
  * @class WC_VRPayment_Download_Helper
  */

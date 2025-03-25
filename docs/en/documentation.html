@@ -4,16 +4,16 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<meta name="keywords" value="VRPay, WooCommerce, Wordpress Plugin, WooCommerce Extension, Payment, Payment Integration, Documentation"><meta name="description" value="The documentation for the VRPay plugin that enables processing payments with VRPay.">		
+		<meta name="keywords" value="VRPayment, WooCommerce, Wordpress Plugin, WooCommerce Extension, Payment, Payment Integration, Documentation"><meta name="description" value="The documentation for the VRPayment plugin that enables processing payments with VRPayment.">		
 		<link rel="canonical" href="https://plugin-documentation.wallee.com/wallee-payment/woocommerce/master/docs/en/documentation.html" />
-		<title>VRPay WooCommerce</title>
+		<title>VRPayment WooCommerce</title>
 		<link href="assets/monokai-sublime.css" rel="stylesheet" />
 		<link href="assets/base.css" rel="stylesheet" />
 	</head>
 	<body class="documentation">
 		<div class="layout-wrapper">
 							<div class="layout-title">
-					<h1>VRPay WooCommerce</h1>
+					<h1>VRPayment WooCommerce</h1>
 <h2>Documentation</h2>				</div>
 										<div class="layout-navigation">
 					<ul class="nav">
@@ -39,7 +39,7 @@
 	</div>
 	<div class="chapter-body">
 					<div class="paragraph">
-<p>If you don&#8217;t already have one, create a <a href="https://gateway.vr-payment.de/user/login/">VRPay</a> account.</p>
+<p>If you don&#8217;t already have one, create a <a href="https://gateway.vr-payment.de/user/login/">VRPayment</a> account.</p>
 </div>					</div>
 </div>	<div class="chapter" id="_installation">
 	<div class="chapter-title">
@@ -50,7 +50,7 @@
 					<div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Install the extension directly from your Wordpress backend by going to Plugins &#8594; Add New. There search for VRPay.</p>
+<p>Install the extension directly from your Wordpress backend by going to Plugins &#8594; Add New. There search for VRPayment.</p>
 </li>
 <li>
 <p>The plugin will now be visible under Plugins. You can install the plugin directly from here. Once it is installed, you will be able to open the configuration.</p>
@@ -77,7 +77,7 @@ You will be automatically notified once there are updates available for the plug
 					<div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Navigate to WooCommerce &#8594; Settings &#8594; VRPay in your Wordpress backend and enter the VRPay Space ID, User ID and Authentification Key that you can manually create an <a href="https://gateway.vr-payment.de/en-us/doc/permission-concept#_create_application_users" target="_blank">application user</a>.</p>
+<p>Navigate to WooCommerce &#8594; Settings &#8594; VRPayment in your Wordpress backend and enter the VRPayment Space ID, User ID and Authentification Key that you can manually create an <a href="https://gateway.vr-payment.de/en-us/doc/permission-concept#_create_application_users" target="_blank">application user</a>.</p>
 <div class="imageblock">
 <div class="content">
 <img src="resource/settings.png" alt="settings"/>
@@ -108,7 +108,7 @@ WooCommerce &gt; Settings &gt; Payment.</p>
 	</div>
 	<div class="section-body">
 					<div class="paragraph">
-<p>The VRPay payment method configurations are synchronized automatically into the WooCommerce store. There are just a few payment method settings in the WooCommerce store in WooCommerce &gt; Settings &gt; Payment.</p>
+<p>The VRPayment payment method configurations are synchronized automatically into the WooCommerce store. There are just a few payment method settings in the WooCommerce store in WooCommerce &gt; Settings &gt; Payment.</p>
 </div><div class="imageblock">
 <div class="content">
 <img src="resource/method.png" alt="Method Settings"/>
@@ -133,8 +133,8 @@ WooCommerce &gt; Settings &gt; Payment.</p>
 	</div>
 	<div class="chapter-body">
 					<div class="paragraph">
-<p>The Payment Process of VRPay is <strong>completely standardized</strong> for <strong>every payment method</strong>. This gives you the ability to simply add
-a payment method or processor without changes inside of your WooCommerce configuration. An overview about the states and the payment processes of VRPay
+<p>The Payment Process of VRPayment is <strong>completely standardized</strong> for <strong>every payment method</strong>. This gives you the ability to simply add
+a payment method or processor without changes inside of your WooCommerce configuration. An overview about the states and the payment processes of VRPayment
 can be found in the <a href="https://gateway.vr-payment.de/en-us/doc/payment/transaction-process" target="_blank">Payment Documentation</a>.</p>
 </div><div class="paragraph">
 <p>Below you find a diagram that shows the state machine of the WooCommerce order including additional information for the state transitions.</p>
@@ -145,10 +145,10 @@ can be found in the <a href="https://gateway.vr-payment.de/en-us/doc/payment/tra
 </div><div class="olist glossary">
 <ol class="glossary">
 <li>
-<p>When the user is redirected to VRPay to process the payment the order within WooCommerce is marked as <code>Redirected</code>. Along this the transaction within VRPay is created resp. updated with the latest address, line items etc.</p>
+<p>When the user is redirected to VRPayment to process the payment the order within WooCommerce is marked as <code>Redirected</code>. Along this the transaction within VRPayment is created resp. updated with the latest address, line items etc.</p>
 </li>
 <li>
-<p>When the transaction is marked as <code>authorized</code> in VRPay the order within WooCommerce will be marked as <code>On hold</code>. The amount is only reserved at this point. The order is not yet ready to be fulfilled.</p>
+<p>When the transaction is marked as <code>authorized</code> in VRPayment the order within WooCommerce will be marked as <code>On hold</code>. The amount is only reserved at this point. The order is not yet ready to be fulfilled.</p>
 </li>
 <li>
 <p>When the transaction fails during the authorization process the WooCommerce order is marked as <code>Failed</code>.</p>
@@ -163,7 +163,7 @@ can be found in the <a href="https://gateway.vr-payment.de/en-us/doc/payment/tra
 <p>If you decide to void an authorized transaction (in case for example the products ordered are no longer in stock), the order within WooCommerce will also be marked as <code>canceled</code>.</p>
 </li>
 <li>
-<p>When the transaction is marked in VRPay as <code>fulfill</code> the order within WooCommerce will be be marked as <code>Processing</code> (for physical goods) or <code>Completed</code> (for virtual/downloadable products). This is when you can start the fulfillment process. Once this state has been reached the plugin does not change the status of the order anymore.</p>
+<p>When the transaction is marked in VRPayment as <code>fulfill</code> the order within WooCommerce will be be marked as <code>Processing</code> (for physical goods) or <code>Completed</code> (for virtual/downloadable products). This is when you can start the fulfillment process. Once this state has been reached the plugin does not change the status of the order anymore.</p>
 </li>
 </ol>
 </div><div class="paragraph">
@@ -177,7 +177,7 @@ can be found in the <a href="https://gateway.vr-payment.de/en-us/doc/payment/tra
 	<div class="chapter-body">
 					<div class="paragraph">
 <p>You can capture, cancel and refund transactions directly from within the Wordpress backend. Please note
-if you refund, void or capture transaction inside VRPay the events will not be synchronized into
+if you refund, void or capture transaction inside VRPayment the events will not be synchronized into
 WooCommerce.</p>
 </div>							<div class="section" id="_complete_capture_an_order">
 	<div class="section-title">
@@ -196,7 +196,7 @@ WooCommerce.</p>
 <div class="title">Note</div>
 </td>
 <td class="content">
-When the completion is pending in VRPay the order will stay in on hold state.
+When the completion is pending in VRPayment the order will stay in on hold state.
 </td>
 </tr>
 </table>
@@ -207,11 +207,11 @@ When the completion is pending in VRPay the order will stay in on hold state.
 </div><div class="paragraph">
 <p><strong>Deferred payment completion</strong></p>
 </div><div class="paragraph">
-<p>Retailers often have the case that they want to authorize transactions only and start the fulfillment process once all items are shippable. This is also possible with VRPay.</p>
+<p>Retailers often have the case that they want to authorize transactions only and start the fulfillment process once all items are shippable. This is also possible with VRPayment.</p>
 </div><div class="paragraph">
 <p>However, certain processes should be followed. If you have configured payment completion to be deferred you should capture the transaction before you initiate the shipment
 as it can always happen that a completion fails. If you want to be sure that you do not ship items for which you have not been paid you should postpone the shipment until
-the fulfill state is reached. Initially the transaction will be in the <code>Authorized</code> state in VRPay and <code>On hold</code> in WooCommerce. If you want to start the fulfillment process make sure you initiate the completion process as described above. Once the completion was successful the order will switch into the <code>Fulfill</code> state in VRPay and into <code>Processing</code> state in WooCommerce.</p>
+the fulfill state is reached. Initially the transaction will be in the <code>Authorized</code> state in VRPayment and <code>On hold</code> in WooCommerce. If you want to start the fulfillment process make sure you initiate the completion process as described above. Once the completion was successful the order will switch into the <code>Fulfill</code> state in VRPayment and into <code>Processing</code> state in WooCommerce.</p>
 </div><div class="paragraph">
 <p>You can now start the fulfillment process and switch the order into the <code>Processing</code> state in WooCommerce.</p>
 </div><div class="paragraph">
@@ -293,7 +293,7 @@ It can take some time until you see the refund in WooCommerce. Refunds will only
 	</div>
 	<div class="section-body">
 					<div class="paragraph">
-<p>As long as the delivery should not be done the state of the order will be in <code>On Hold</code>. This happens when the transaction in VRPay
+<p>As long as the delivery should not be done the state of the order will be in <code>On Hold</code>. This happens when the transaction in VRPayment
 has not reached the fulfill state.</p>
 </div><div class="paragraph">
 <p>There are essentially two reasons why this can happen:</p>
@@ -304,7 +304,7 @@ has not reached the fulfill state.</p>
 </li>
 <li>
 <p>As long as we are not able to tell you if you should fulfill the order. The delivery decision is done automatically. If this does not happen
-within the defined time frame, VRPay will generate a manual task which you should observe and follow the instructions.
+within the defined time frame, VRPayment will generate a manual task which you should observe and follow the instructions.
 When there is a manual task we will also display it in the Wordpress Backend.</p>
 </li>
 </ul>
@@ -314,12 +314,12 @@ When there is a manual task we will also display it in the Wordpress Backend.</p
 </div>					<div class="section" id="_limitations_of_the_synchronization_between_whitelabelname_and_woocommerce">
 	<div class="section-title">
 		<h2>
-			<span class="title-number">6.5</span>Limitations of the synchronization between VRPay and WooCommerce					</h2>
+			<span class="title-number">6.5</span>Limitations of the synchronization between VRPayment and WooCommerce					</h2>
 	</div>
 	<div class="section-body">
 					<div class="paragraph">
-<p>Please note that captures, voids and refunds done in VRPay are not synchronized into WooCommerce.
-You should therefore always perform captures, voids and refunds inside the WooCommerce backend and not inside VRPay.</p>
+<p>Please note that captures, voids and refunds done in VRPayment are not synchronized into WooCommerce.
+You should therefore always perform captures, voids and refunds inside the WooCommerce backend and not inside VRPayment.</p>
 </div>					</div>
 </div>					<div class="section" id="_tokenization">
 	<div class="section-title">
@@ -349,8 +349,8 @@ Tokenization is not available for guest checkouts.
 	</div>
 	<div class="section-body">
 					<div class="paragraph">
-<p>In case you want to sell Subscriptions with WooCommerce and VRPay this is possible. However, you need to get the VRPay Subscription Plugin for
-Woocommerce that you can also get directly from your Wordpress backend in Plugins &#8594; Search &#8594; VRPay Subscriptions.</p>
+<p>In case you want to sell Subscriptions with WooCommerce and VRPayment this is possible. However, you need to get the VRPayment Subscription Plugin for
+Woocommerce that you can also get directly from your Wordpress backend in Plugins &#8594; Search &#8594; VRPayment Subscriptions.</p>
 </div><div class="paragraph">
 <p>This plugin is needed to sell subscription products and process recurring orders. Additionally, the plugin <strong>requires</strong> <a href="https://woocommerce.com/products/woocommerce-subscriptions" target="_blank">WooCommerce Subscription</a> to be installed.</p>
 </div>					</div>
@@ -378,7 +378,7 @@ The extension will log various unexpected errors or information which can help i
 	</div>
 	<div class="section-body">
 					<div class="paragraph">
-<p>Make sure that you followed the <a href="#_configuration">Configuration</a> section by stating your VRPay space ID and application user&#8217;s access information in the settings page. By saving the configuration form the synchronization of the payment methods and the set up of the webhooks are initiated.
+<p>Make sure that you followed the <a href="#_configuration">Configuration</a> section by stating your VRPayment space ID and application user&#8217;s access information in the settings page. By saving the configuration form the synchronization of the payment methods and the set up of the webhooks are initiated.
 Ensure the payment method are visible in the WooCommerce Settings &gt; Payment section and the methods are active.</p>
 </div><div class="paragraph">
 <p>If this does not solve the problem, make sure no other plugin is hiding the payment methods.</p>
@@ -386,7 +386,7 @@ Ensure the payment method are visible in the WooCommerce Settings &gt; Payment s
 </div>					<div class="section" id="_how_can_i_send_the_product_attributes_to_whitelabelname">
 	<div class="section-title">
 		<h2>
-			<span class="title-number">8.2</span>How can I send the product attributes to VRPay?					</h2>
+			<span class="title-number">8.2</span>How can I send the product attributes to VRPayment?					</h2>
 	</div>
 	<div class="section-body">
 					<div class="admonitionblock note">
@@ -396,12 +396,12 @@ Ensure the payment method are visible in the WooCommerce Settings &gt; Payment s
 <div class="title">Note</div>
 </td>
 <td class="content">
-It is only possible to send the global product attributes to VRPay, the custom product attributes are not supported.
+It is only possible to send the global product attributes to VRPayment, the custom product attributes are not supported.
 </td>
 </tr>
 </table>
 </div><div class="paragraph">
-<p>To send a product attribute to VRPay edit the attribute in Products &#8594; Attributes, select the option <strong>Send attribute to VRPay.</strong> and save.</p>
+<p>To send a product attribute to VRPayment edit the attribute in Products &#8594; Attributes, select the option <strong>Send attribute to VRPayment.</strong> and save.</p>
 </div>					</div>
 </div>					<div class="section" id="_how_can_i_update_the_plugin">
 	<div class="section-title">
@@ -411,7 +411,7 @@ It is only possible to send the global product attributes to VRPay, the custom p
 	<div class="section-body">
 					<div class="paragraph">
 <p>Plugin updates can be done directly in your Wordpress backend under Plugins.
-Search for the plugin VRPay and click on <code>update now</code>. To perform the update, WordPress will need to access your web server. You will therefore have to enter your FTP credentials to proceed.</p>
+Search for the plugin VRPayment and click on <code>update now</code>. To perform the update, WordPress will need to access your web server. You will therefore have to enter your FTP credentials to proceed.</p>
 </div>					</div>
 </div>					<div class="section" id="_how_can_i_translate_the_plugin">
 	<div class="section-title">
@@ -428,7 +428,7 @@ Search for the plugin VRPay and click on <code>update now</code>. To perform the
 <p>Go to <strong>Loco Translate &gt; Plugins</strong>.</p>
 </li>
 <li>
-<p>Click on <strong>WooCommere VRPay</strong>.</p>
+<p>Click on <strong>WooCommere VRPayment</strong>.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -445,7 +445,7 @@ Search for the plugin VRPay and click on <code>update now</code>. To perform the
 </div>					<div class="section" id="_how_can_i_add_the_value_of_a_strong_date_of_birth_strong_or_strong_gender_strong_input_field_from_my_checkout_form_to_the_whitelabelname_addresses">
 	<div class="section-title">
 		<h2>
-			<span class="title-number">8.5</span>How can I add the value of a <strong>Date Of Birth</strong> or <strong>Gender</strong> input field from my checkout form to the VRPay addresses?					</h2>
+			<span class="title-number">8.5</span>How can I add the value of a <strong>Date Of Birth</strong> or <strong>Gender</strong> input field from my checkout form to the VRPayment addresses?					</h2>
 	</div>
 	<div class="section-body">
 							<div class="section" id="_billing_address_date_of_birth">
@@ -628,7 +628,7 @@ Search for the plugin VRPay and click on <code>update now</code>. To perform the
     </li>    		    			<li class="nav-level-2">
 	<a href="#_limitations_of_the_synchronization_between_whitelabelname_and_woocommerce">
 		<span class="item-number">6.5</span>
-		<span class="item-title">Limitations of the synchronization between VRPay and WooCommerce</span>
+		<span class="item-title">Limitations of the synchronization between VRPayment and WooCommerce</span>
 			</a>
     </li>    		    			<li class="nav-level-2">
 	<a href="#_tokenization">
@@ -660,7 +660,7 @@ Search for the plugin VRPay and click on <code>update now</code>. To perform the
     </li>    		    			<li class="nav-level-2">
 	<a href="#_how_can_i_send_the_product_attributes_to_whitelabelname">
 		<span class="item-number">8.2</span>
-		<span class="item-title">How can I send the product attributes to VRPay?</span>
+		<span class="item-title">How can I send the product attributes to VRPayment?</span>
 			</a>
     </li>    		    			<li class="nav-level-2">
 	<a href="#_how_can_i_update_the_plugin">
@@ -675,7 +675,7 @@ Search for the plugin VRPay and click on <code>update now</code>. To perform the
     </li>    		    			<li class="nav-level-2">
 	<a href="#_how_can_i_add_the_value_of_a_strong_date_of_birth_strong_or_strong_gender_strong_input_field_from_my_checkout_form_to_the_whitelabelname_addresses">
 		<span class="item-number">8.5</span>
-		<span class="item-title">How can I add the value of a &lt;strong&gt;Date Of Birth&lt;/strong&gt; or &lt;strong&gt;Gender&lt;/strong&gt; input field from my checkout form to the VRPay addresses?</span>
+		<span class="item-title">How can I add the value of a &lt;strong&gt;Date Of Birth&lt;/strong&gt; or &lt;strong&gt;Gender&lt;/strong&gt; input field from my checkout form to the VRPayment addresses?</span>
 			</a>
         	<ul  class="nav">
     		    			<li class="nav-level-3">

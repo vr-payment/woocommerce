@@ -18,5 +18,5 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 <div class="error notice notice-error">
-	<p><?php esc_html_e( 'There was an issue executing the migration for VRPay.', 'woo-vrpayment' ); ?></p>
+	<p><?php esc_html_e( 'There was an issue executing the migration for VRPayment.', 'woo-vrpayment' ); ?></p>
 </div>

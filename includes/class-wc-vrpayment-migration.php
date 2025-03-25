@@ -166,7 +166,7 @@ class WC_VRPayment_Migration {
 					esc_html__( 'Please check the following requirements before activating: %s', 'woo-vrpayment' ),
 					esc_html( $error_list )
 				),
-				esc_html__( 'Could not activate plugin VRPay.', 'woo-vrpayment' ),
+				esc_html__( 'Could not activate plugin VRPayment.', 'woo-vrpayment' ),
 				array( 'back_link' => true )
 			);
 			return;
