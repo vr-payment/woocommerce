@@ -1,9 +1,9 @@
 
 
-# VRPayment
-This repository contains the VRPayment plugin that enables WooCommerce to process payments with [VRPayment](https://www.vr-payment.de/).
+# VR Payment
+This repository contains the VR Payment plugin that enables WooCommerce to process payments with [VR Payment](https://www.vr-payment.de/).
 
-##### To use this extension, a [VRPayment](https://gateway.vr-payment.de/user/login)  account is required.
+##### To use this extension, a [VR Payment](https://gateway.vr-payment.de/user/login)  account is required.
 
 ## Requirements
 
@@ -18,7 +18,7 @@ This repository contains the VRPayment plugin that enables WooCommerce to proces
 
 ## Support
 
-Support queries can be issued on the [VRPayment support site](https://www.vr-payment.de/hotline).
+Support queries can be issued on the [VR Payment support site](https://www.vr-payment.de/hotline).
 
 ## Supported versions
 
@@ -35,8 +35,8 @@ Please see the [license file](https://github.com/vr-payment/woocommerce/blob/3.3
 
 ## Privacy Policy
 
-Please see the [VRPayment privacy policies site](https://en.vrpayment.com/legal/privacy-policy) for more information.
+Please see the [VR Payment privacy policies site](https://en.vrpayment.com/legal/privacy-policy) for more information.
 
 ## Terms of Use
 
-Please see the [VRPayment terms of use site](https://en.vrpayment.com/legal/agb) for more information.
+Please see the [VR Payment terms of use site](https://en.vrpayment.com/legal/agb) for more information.

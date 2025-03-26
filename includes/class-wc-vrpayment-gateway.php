@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Class WC_VRPayment_Gateway.
- * This class implements the VRPayment gateways
+ * This class implements the VR Payment gateways
  *
  * @class WC_VRPayment_Gateway
  */

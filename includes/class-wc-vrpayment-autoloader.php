@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Class WC_VRPayment_Autoloader.
- * This is the autoloader for VRPayment classes.
+ * This is the autoloader for VR Payment classes.
  *
  * @class WC_VRPayment_Autoloader
  */

@@ -17,7 +17,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * This entity holds data about a VRPayment payment method.
+ * This entity holds data about a VR Payment payment method.
  *
  * @method int get_id()
  * @method string get_state()

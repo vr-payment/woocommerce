@@ -17,7 +17,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * This service provides functions to deal with VRPayment transactions.
+ * This service provides functions to deal with VR Payment transactions.
  */
 class WC_VRPayment_Service_Transaction extends WC_VRPayment_Service_Abstract {
 
@@ -231,7 +231,7 @@ class WC_VRPayment_Service_Transaction extends WC_VRPayment_Service_Abstract {
 
 
 	/**
-	 * Returns the URL to VRPayment's JavaScript library that is necessary to display the payment form.
+	 * Returns the URL to VR Payment's JavaScript library that is necessary to display the payment form.
 	 *
 	 * @param int $space_id space id.
 	 * @param int $transaction_id transaction id.

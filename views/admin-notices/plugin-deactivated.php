@@ -16,4 +16,4 @@
 
 defined( 'ABSPATH' ) || exit;
 ?>
-<div class="error notice notice-error"><p><?php esc_html_e( 'VRPayment deactivated because it depends on WooCommerce.', 'woo-vrpayment' ); ?></p></div>
+<div class="error notice notice-error"><p><?php esc_html_e( 'VR Payment deactivated because it depends on WooCommerce.', 'woo-vrpayment' ); ?></p></div>

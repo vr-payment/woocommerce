@@ -72,7 +72,7 @@ class WC_VRPayment_Service_Method_Configuration extends WC_VRPayment_Service_Abs
 	}
 
 	/**
-	 * Synchronizes the payment method configurations from VRPayment.
+	 * Synchronizes the payment method configurations from VR Payment.
 	 */
 	public function synchronize() {
 		$existing_found = array();

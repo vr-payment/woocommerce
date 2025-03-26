@@ -60,7 +60,7 @@ class WC_VRPayment_Admin_Transaction {
 			: 'shop_order';
 		add_meta_box(
 			'woocommerce-order-vrpayment-transaction',
-			__( 'VRPayment Transaction', 'woocommerce-vrpayment' ),
+			__( 'VR Payment Transaction', 'woocommerce-vrpayment' ),
 			array(
 				__CLASS__,
 				'output',
@@ -147,7 +147,7 @@ class WC_VRPayment_Admin_Transaction {
 						<td class="value"><strong> <a
 								href="<?php printf( '%s', esc_url( self::get_transaction_url( $transaction_info ) ) ); ?>"
 								target="_blank">
-						<?php esc_html_e( 'View in VRPayment', 'woo-vrpayment' ); ?>
+						<?php esc_html_e( 'View in VR Payment', 'woo-vrpayment' ); ?>
 					</a>
 						</strong></td>
 					</tr>

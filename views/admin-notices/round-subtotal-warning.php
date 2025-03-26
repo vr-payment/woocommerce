@@ -18,5 +18,5 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 <div class="error notice notice-error">
-	<p><?php esc_html_e( 'The VRPayment payment methods are not available, if the taxes are rounded at subtotal level. Please disable the \'Round tax at subtotal level, instead of rounding per line\' in the tax settings to enable the VRPayment payment methods.', 'woo-vrpayment' ); ?></p>
+	<p><?php esc_html_e( 'The VR Payment payment methods are not available, if the taxes are rounded at subtotal level. Please disable the \'Round tax at subtotal level, instead of rounding per line\' in the tax settings to enable the VR Payment payment methods.', 'woo-vrpayment' ); ?></p>
 </div>

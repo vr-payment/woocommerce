@@ -367,7 +367,7 @@ class WC_VRPayment_Admin {
 			'<tr class="form-field form-required">
 					<th scope="row" valign="top">
 							<label for="vrpayment_attribute_option_send">'
-			) . esc_html__( 'Send attribute to VRPayment.', 'woo-vrpayment' ) . esc_html(
+			) . esc_html__( 'Send attribute to VR Payment.', 'woo-vrpayment' ) . esc_html(
 						'</label>
 					</th>
 						<td>
@@ -375,7 +375,7 @@ class WC_VRPayment_Admin {
 			) . esc_attr( checked( $checked, true, false ) ) . esc_html(
 							'/>
 							<p class="description">'
-			) . esc_html__( 'Should this product attribute be sent to VRPayment as line item attribute?', 'woo-vrpayment' ) . esc_html(
+			) . esc_html__( 'Should this product attribute be sent to VR Payment as line item attribute?', 'woo-vrpayment' ) . esc_html(
 							'</p>
 						</td>
 				</tr>'
@@ -389,10 +389,10 @@ class WC_VRPayment_Admin {
 		echo esc_html(
 			'<div class="form-field">
 				<label for="vrpayment_attribute_option_send"><input name="vrpayment_attribute_option_send" id="vrpayment_attribute_option_send" type="checkbox" value="1">'
-		) . esc_html__( 'Send attribute to VRPayment.', 'woo-vrpayment' ) . esc_html(
+		) . esc_html__( 'Send attribute to VR Payment.', 'woo-vrpayment' ) . esc_html(
 				'</label>
 				<p class="description">'
-		) . esc_html__( 'Should this product attribute be sent to VRPayment as line item attribute?', 'woo-vrpayment' ) .
+		) . esc_html__( 'Should this product attribute be sent to VR Payment as line item attribute?', 'woo-vrpayment' ) .
 		esc_html(
 				'</p>
 			</div>'

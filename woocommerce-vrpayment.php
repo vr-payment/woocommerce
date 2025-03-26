@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: VRPayment
+ * Plugin Name: VR Payment
  * Plugin URI: https://wordpress.org/plugins/woo-vrpayment
- * Description: Process WooCommerce payments with VRPayment.
+ * Description: Process WooCommerce payments with VR Payment.
  * Version: 3.3.7
  * Author: VR Payment GmbH
  * Author URI: https://www.vr-payment.de
@@ -784,7 +784,7 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 					'show_in_admin_all_list' => true,
 					'show_in_admin_status_list' => true,
 					/* translators: %s: replaces string */
-					'label_count' => _n_noop( 'VRPayment Processing <span class="count">(%s)</span>', 'VRPayment Processing <span class="count">(%s)</span>', 'woo-vrpayment' ),
+					'label_count' => _n_noop( 'VR Payment Processing <span class="count">(%s)</span>', 'VR Payment Processing <span class="count">(%s)</span>', 'woo-vrpayment' ),
 				)
 			);
 			register_post_status(

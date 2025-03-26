@@ -29,7 +29,7 @@ class WC_VRPayment_Admin_Settings_Page extends WC_Settings_Page {
 	 */
 	public function __construct() {
 		$this->id = 'vrpayment';
-		$this->label = __( 'VRPayment', 'woo-vrpayment' );
+		$this->label = __( 'VR Payment', 'woo-vrpayment' );
 
 		add_filter(
 			'woocommerce_settings_tabs_array',
@@ -55,7 +55,7 @@ class WC_VRPayment_Admin_Settings_Page extends WC_Settings_Page {
 	 * @return mixed $settings_tabs
 	 */
 	public function add_settings_tab( $settings_tabs ) {
-		$settings_tabs[ $this->id ] = 'VRPayment';
+		$settings_tabs[ $this->id ] = 'VR Payment';
 		return $settings_tabs;
 	}
 

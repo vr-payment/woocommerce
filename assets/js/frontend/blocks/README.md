@@ -2,7 +2,7 @@ WooCommerce Blocks integration
 ==============================
 
 This project provides the functionality needed for integrating the payment methods provided 
-by VRPayment with the WooCommerce Blocks.
+by VR Payment with the WooCommerce Blocks.
 
 See [this documentation](https://github.com/woocommerce/woocommerce/tree/trunk/plugins/woocommerce-blocks/docs/) for more information about the integration process.
 

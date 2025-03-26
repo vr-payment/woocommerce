@@ -19,7 +19,7 @@ use VRPayment\Sdk\Model\TokenVersion;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * This service provides functions to deal with VRPayment tokens.
+ * This service provides functions to deal with VR Payment tokens.
  *
  * @class WC_VRPayment_Service_Token
  */
