@@ -89,6 +89,7 @@ class WC_VRPayment_Webhook_Transaction extends WC_VRPayment_Webhook_Order_Relate
 					break;
 				case \VRPayment\Sdk\Model\TransactionState::FULFILL:
 					$this->authorize( $transaction, $order );
+					do_action( 'vrpayment_transaction_authorized_send_email', $order->get_id() );
 					$this->fulfill( $transaction, $order );
 					break;
 				case \VRPayment\Sdk\Model\TransactionState::VOIDED:
@@ -105,6 +106,12 @@ class WC_VRPayment_Webhook_Transaction extends WC_VRPayment_Webhook_Order_Relate
 		}
 
 		WC_VRPayment_Service_Transaction::instance()->update_transaction_info( $transaction, $order );
+
+		// This is edge case for deferred payment methods
+		$transaction_info = WC_VRPayment_Entity_Transaction_Info::load_by_order_id( $order->get_id() );
+		if ($transaction_info->get_state() === \VRPayment\Sdk\Model\TransactionState::AUTHORIZED) {
+			do_action( 'vrpayment_transaction_authorized_send_email', $order->get_id() );
+		}
 	}
 
 	/**
