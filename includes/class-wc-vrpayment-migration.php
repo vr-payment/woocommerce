@@ -268,7 +268,7 @@ class WC_VRPayment_Migration {
 	public static function plugin_row_meta( $links, $file ) {
 		if ( WC_VRPAYMENT_PLUGIN_BASENAME === $file ) {
 			$row_meta = array(
-				'docs' => '<a href="https://gateway.vr-payment.de/doc/woocommerce/3.3.10/docs/en/documentation.html" aria-label="' . esc_html__( 'View Documentation', 'woo-vrpayment' ) . '">' . esc_html__( 'Documentation', 'woo-vrpayment' ) . '</a>',
+				'docs' => '<a href="https://plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.3.11/docs/en/documentation.html" aria-label="' . esc_html__( 'View Documentation', 'woo-vrpayment' ) . '">' . esc_html__( 'Documentation', 'woo-vrpayment' ) . '</a>',
 			);
 
 			return array_merge( $links, $row_meta );
