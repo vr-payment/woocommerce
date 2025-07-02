@@ -3,7 +3,7 @@
  * Plugin Name: VR Payment
  * Plugin URI: https://wordpress.org/plugins/woo-vrpayment
  * Description: Process WooCommerce payments with VR Payment.
- * Version: 3.3.12
+ * Version: 3.3.13
  * Author: VR Payment GmbH
  * Author URI: https://www.vr-payment.de
  * Text Domain: vrpayment
@@ -11,7 +11,7 @@
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * WC requires at least: 8.0.0
- * WC tested up to 9.8.5
+ * WC tested up to 9.9.5
  * License: Apache-2.0
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  */
@@ -39,14 +39,14 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		const VRPAYMENT_CK_ORDER_REFERENCE = 'wc_vrpayment_order_reference';
 		const VRPAYMENT_CK_ENFORCE_CONSISTENCY = 'wc_vrpayment_enforce_consistency';
 		const VRPAYMENT_UPGRADE_VERSION = '3.1.1';
-		const WC_MAXIMUM_VERSION = '9.7.0';
+		const WC_MAXIMUM_VERSION = '9.9.5';
 
 		/**
 		 * WooCommerce VRPayment version.
 		 *
 		 * @var string
 		 */
-		private $version = '3.3.12';
+		private $version = '3.3.13';
 
 		/**
 		 * The single instance of the class.
@@ -588,6 +588,19 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 						// If the order is using our payment method, we want to process it
 						// even if the value of the transaction is 0, which woocommerce by default
 						// process it without payment gateway.
+						$transaction_info = WC_VRPayment_Entity_Transaction_Info::load_by_order_id( $order->get_id() );
+						if ( in_array(
+						  $transaction_info->get_state(),
+						  array(
+							\VRPayment\Sdk\Model\TransactionState::FULFILL,
+							\VRPayment\Sdk\Model\TransactionState::AUTHORIZED,
+							\VRPayment\Sdk\Model\TransactionState::FAILED,
+							\VRPayment\Sdk\Model\TransactionState::DECLINE,
+						  ),
+						  true
+						) ) {
+							return false;
+						}
 						return true;
 					}
 					return $value;

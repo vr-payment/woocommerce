@@ -205,7 +205,7 @@ class WC_VRPayment_Admin_Settings_Page extends WC_Settings_Page {
 		$settings = array(
 			array(
 				'links' => array(
-					'https://plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.3.12/docs/en/documentation.html' => esc_html__( 'Documentation', 'woo-vrpayment' ),
+					'https://plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.3.13/docs/en/documentation.html' => esc_html__( 'Documentation', 'woo-vrpayment' ),
 					'https://gateway.vr-payment.de/user/login' => esc_html__( 'Sign Up', 'woo-vrpayment' ),
 				),
 				'type'  => 'vrpayment_links',
