@@ -14,7 +14,7 @@ This repository contains the VR Payment plugin that enables WooCommerce to proce
 
 ## Documentation
 
-* [Documentation](https://plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.3.14/docs/en/documentation.html)
+* [Documentation](https://docs.plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.3.15/docs/en/documentation.html)
 
 ## Support
 
@@ -25,13 +25,13 @@ Support queries can be issued on the [VR Payment support site](https://www.vr-pa
 ____________________________________________________________________________
 | WooCommerce version    | Plugin major version   | Supported until        |
 |------------------------|------------------------|------------------------|
-| 8.x, 9.x, 10.x         | 3.x                    | Further notice         |
+| 8.x, 9.x               | 3.x                    | Further notice         |
 | 7.x                    | 2.x                    | Feb 2024               |
 ----------------------------------------------------------------------------
 
 ## License
 
-Please see the [license file](https://github.com/vr-payment/woocommerce/blob/3.3.14/LICENSE) for more information.
+Please see the [license file](https://github.com/vr-payment/woocommerce/blob/3.3.15/LICENSE) for more information.
 
 ## Privacy Policy
 

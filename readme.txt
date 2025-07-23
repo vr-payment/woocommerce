@@ -3,7 +3,7 @@ Contributors: VR Payment GmbH
 Tags: woocommerce VR Payment, woocommerce, VR Payment, payment, e-commerce, webshop, psp, invoice, packing slips, pdf, customer invoice, processing
 Requires at least: 4.7
 Tested up to: 6.7
-Stable tag: 3.3.14
+Stable tag: 3.3.15
 License: Apache-2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -23,7 +23,7 @@ To use this extension, a VR Payment account is required. Sign up on [VR Payment]
 
 == Documentation ==
 
-Additional documentation for this plugin is available [here](https://plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.3.14/docs/en/documentation.html).
+Additional documentation for this plugin is available [here](https://docs.plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.3.15/docs/en/documentation.html).
 
 == External Services ==
 
@@ -81,15 +81,5 @@ Enquiries about our terms of use can be made on the [VR Payment terms of use sit
 == Changelog ==
 
 
-= 3.3.14 - July 22nd 2025 =
-- [Bugfix] Fix class loading order issues
-- [Bugfix] Fix problem with multisite not installing tables when plugin is network activated
-- [Bugfix] Fix missing payment methods if subscription price is 0
-- [Bugfix] Fix for failed subscriptions renewals if subscription contains a discount
-- [Bugfix] Fix for iframe payment fields not loading on delivery method change
-- [Feature] Added plugin version metric
-- [Feature] Send order notes to portal
-- [Tested Against] PHP 8.2
-- [Tested Against] Wordpress 6.7
-- [Tested Against] Woocommerce 10.0.0
-- [Tested Against] PHP SDK 4.8.0
+= 3.3.15 - July 23rd 2025 =
+- [Hotfix] Rollback to stable version

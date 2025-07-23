@@ -205,7 +205,7 @@ class WC_VRPayment_Admin_Settings_Page extends WC_Settings_Page {
 		$settings = array(
 			array(
 				'links' => array(
-					'https://plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.3.14/docs/en/documentation.html' => esc_html__( 'Documentation', 'woo-vrpayment' ),
+					'https://docs.plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.3.15/docs/en/documentation.html' => esc_html__( 'Documentation', 'woo-vrpayment' ),
 					'https://gateway.vr-payment.de/user/login' => esc_html__( 'Sign Up', 'woo-vrpayment' ),
 				),
 				'type'  => 'vrpayment_links',
@@ -408,25 +408,6 @@ TEXT
 				'id' => 'reference_options',
 			),
 
-			array(
-				'title' => esc_html__( 'Virtual Order Status Options', 'woo-vrpayment' ),
-				'type' => 'title',
-				'id' => 'order_status_options',
-			),
-
-			array(
-				'title' => esc_html__( 'Change Virtual Order Status On Completion', 'woo-vrpayment' ),
-				'desc' => esc_html__( 'Enable this setting to automatically set order\'s status to "Completed" when they consist entirely out of virtual products and order\'s total is 0.', 'woo-vrpayment' ),
-				'id' => WooCommerce_VRPayment::VRPAYMENT_CK_CHANGE_ORDER_STATUS,
-				'type' => 'checkbox',
-				'default' => 'yes',
-				'css' => 'min-width:300px;',
-			),
-
-			array(
-				'type' => 'sectionend',
-				'id' => 'order_status_options',
-			),
 		);
 
 		return apply_filters( 'vrpayment_settings', $settings );
