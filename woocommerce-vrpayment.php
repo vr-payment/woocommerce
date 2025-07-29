@@ -3,15 +3,16 @@
  * Plugin Name: VR Payment
  * Plugin URI: https://wordpress.org/plugins/woo-vrpayment
  * Description: Process WooCommerce payments with VR Payment.
- * Version: 3.3.15
+ * Version: 3.3.16
  * Author: VR Payment GmbH
  * Author URI: https://www.vr-payment.de
  * Text Domain: vrpayment
  * Domain Path: /languages/
  * Requires at least: 6.0
  * Requires PHP: 7.4
+ * Requires Plugins: woocommerce
  * WC requires at least: 8.0.0
- * WC tested up to 9.9.5
+ * WC tested up to 10.0.3
  * License: Apache-2.0
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  */
@@ -38,15 +39,16 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		const VRPAYMENT_CK_INTEGRATION = 'wc_vrpayment_integration';
 		const VRPAYMENT_CK_ORDER_REFERENCE = 'wc_vrpayment_order_reference';
 		const VRPAYMENT_CK_ENFORCE_CONSISTENCY = 'wc_vrpayment_enforce_consistency';
+		const VRPAYMENT_CK_CHANGE_ORDER_STATUS = 'wc_vrpayment_change_order_status';
 		const VRPAYMENT_UPGRADE_VERSION = '3.1.1';
-		const WC_MAXIMUM_VERSION = '9.9.5';
+		const WC_MAXIMUM_VERSION = '10.0.3';
 
 		/**
 		 * WooCommerce VRPayment version.
 		 *
 		 * @var string
 		 */
-		private $version = '3.3.15';
+		private $version = '3.3.16';
 
 		/**
 		 * The single instance of the class.
@@ -81,6 +83,13 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		 */
 		protected function __construct() {
 			$this->define_constants();
+		}
+
+		public function boot() {
+			$this->init();
+		}
+
+		private function init() {
 			$this->includes();
 			$this->init_hooks();
 		}
@@ -100,9 +109,9 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 			$this->define( 'WC_VRPAYMENT_ABSPATH', __DIR__ . '/' );
 			$this->define( 'WC_VRPAYMENT_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 			$this->define( 'WC_VRPAYMENT_VERSION', $this->version );
-			$this->define( 'WC_VRPAYMENT_REQUIRED_PHP_VERSION', '5.6' );
-			$this->define( 'WC_VRPAYMENT_REQUIRED_WP_VERSION', '4.7' );
-			$this->define( 'WC_VRPAYMENT_REQUIRED_WC_VERSION', '3.0' );
+			$this->define( 'WC_VRPAYMENT_REQUIRED_PHP_VERSION', '7.4' );
+			$this->define( 'WC_VRPAYMENT_REQUIRED_WP_VERSION', '6.0' );
+			$this->define( 'WC_VRPAYMENT_REQUIRED_WC_VERSION', '8.0' );
 			$this->define( 'WC_VRPAYMENT_REQUIRED_WC_MAXIMUM_VERSION', self::WC_MAXIMUM_VERSION );
 		}
 
@@ -318,6 +327,7 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		 * Fired when the plugin is activated.
 		 */
 		public static function plugin_activate() {
+			self::migrate_plugin_data_on_activation();
 			// Clear the permalinks after the post type has been registered.
 			flush_rewrite_rules();
 		}
@@ -445,6 +455,7 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 				$old_option_prefix . self::VRPAYMENT_CK_INTEGRATION,
 				$old_option_prefix . self::VRPAYMENT_CK_ORDER_REFERENCE,
 				$old_option_prefix . self::VRPAYMENT_CK_ENFORCE_CONSISTENCY,
+				$old_option_prefix . self::VRPAYMENT_CK_CHANGE_ORDER_STATUS,
 				$old_option_prefix . self::WC_MAXIMUM_VERSION,
 			];
 
@@ -1492,7 +1503,10 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		}
 	}
 
-	add_action( 'woocommerce_blocks_loaded', 'WC_VRPayment_Blocks_Support' );
+	add_action( 'woocommerce_loaded', function () {
+		WooCommerce_VRPayment::instance()->boot();
+		add_action( 'woocommerce_blocks_loaded', 'WC_VRPayment_Blocks_Support' );
+	});
 
 	function WC_VRPayment_Blocks_Support() { //phpcs:ignore
 		if ( class_exists( 'Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType' ) ) {
@@ -1502,7 +1516,7 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 				'woocommerce_blocks_payment_method_type_registration',
 				function ( Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry ) {
 					$payment_method_registry->register( new WC_VRPayment_Blocks_Support() );
-				},
+				}
 			);
 		}
 	}
