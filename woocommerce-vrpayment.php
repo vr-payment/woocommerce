@@ -3,7 +3,7 @@
  * Plugin Name: VR Payment
  * Plugin URI: https://wordpress.org/plugins/woo-vrpayment
  * Description: Process WooCommerce payments with VR Payment.
- * Version: 3.3.16
+ * Version: 3.3.17
  * Author: VR Payment GmbH
  * Author URI: https://www.vr-payment.de
  * Text Domain: vrpayment
@@ -12,7 +12,7 @@
  * Requires PHP: 7.4
  * Requires Plugins: woocommerce
  * WC requires at least: 8.0.0
- * WC tested up to 10.0.3
+ * WC tested up to 10.0.4
  * License: Apache-2.0
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  */
@@ -41,14 +41,14 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		const VRPAYMENT_CK_ENFORCE_CONSISTENCY = 'wc_vrpayment_enforce_consistency';
 		const VRPAYMENT_CK_CHANGE_ORDER_STATUS = 'wc_vrpayment_change_order_status';
 		const VRPAYMENT_UPGRADE_VERSION = '3.1.1';
-		const WC_MAXIMUM_VERSION = '10.0.3';
+		const WC_MAXIMUM_VERSION = '10.0.4';
 
 		/**
 		 * WooCommerce VRPayment version.
 		 *
 		 * @var string
 		 */
-		private $version = '3.3.16';
+		private $version = '3.3.17';
 
 		/**
 		 * The single instance of the class.
