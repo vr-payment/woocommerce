@@ -30,7 +30,12 @@ class WC_VRPayment_Webhook_Manual_Task extends WC_VRPayment_Webhook_Abstract {
 	 * @param WC_VRPayment_Webhook_Request $request request.
 	 */
 	public function process( WC_VRPayment_Webhook_Request $request ) {
-		$manual_task_service = WC_VRPayment_Service_Manual_Task::instance();
-		$manual_task_service->update();
+		wc_deprecated_function(
+            __METHOD__,
+            '3.0.12',
+            'WC_VRPayment_Webhook_Manual_Task_Strategy::process'
+        );
+		$strategy = new WC_VRPayment_Webhook_Manual_Task_Strategy();
+		$strategy->process( $request );
 	}
 }

@@ -24,6 +24,20 @@ defined( 'ABSPATH' ) || exit;
  */
 class WC_VRPayment_Webhook_Transaction_Invoice extends WC_VRPayment_Webhook_Order_Related_Abstract {
 
+	/**
+	 * Canonical processor.
+	 *
+	 * @var WC_VRPayment_Webhook_Transaction_Invoice_Strategy
+	 */
+	private $strategy;
+
+	/**
+	 * Construct to initialize canonical processor.
+	 *
+	 */
+	public function __construct() {
+		$this->strategy = new WC_VRPayment_Webhook_Transaction_Invoice_Strategy();
+	}
 
 	/**
 	 * Load entity.
@@ -35,8 +49,12 @@ class WC_VRPayment_Webhook_Transaction_Invoice extends WC_VRPayment_Webhook_Orde
 	 * @throws \VRPayment\Sdk\VersioningException VersioningException.
 	 */
 	protected function load_entity( WC_VRPayment_Webhook_Request $request ) {
-		$transaction_invoice_service = new \VRPayment\Sdk\Service\TransactionInvoiceService( WC_VRPayment_Helper::instance()->get_api_client() );
-		return $transaction_invoice_service->read( $request->get_space_id(), $request->get_entity_id() );
+		wc_deprecated_function(
+            __METHOD__,
+            '3.0.12',
+            'WC_VRPayment_Webhook_Transaction_Invoice_Strategy::load_entity'
+        );
+		return $this->strategy->load_entity( $request );
 	}
 
 	/**
@@ -61,8 +79,12 @@ class WC_VRPayment_Webhook_Transaction_Invoice extends WC_VRPayment_Webhook_Orde
 	 * @return int|string
 	 */
 	protected function get_order_id( $transaction_invoice ) {
-		/* @var \VRPayment\Sdk\Model\TransactionInvoice $transaction_invoice */ //phpcs:ignore
-		return WC_VRPayment_Entity_Transaction_Info::load_by_transaction( $transaction_invoice->getLinkedSpaceId(), $transaction_invoice->getCompletion()->getLineItemVersion()->getTransaction()->getId() )->get_order_id();
+		wc_deprecated_function(
+            __METHOD__,
+            '3.0.12',
+            'WC_VRPayment_Webhook_Transaction_Invoice_Strategy::get_order_id'
+        );
+		return $this->strategy->get_order_id( $transaction_invoice );
 	}
 
 	/**
@@ -81,21 +103,15 @@ class WC_VRPayment_Webhook_Transaction_Invoice extends WC_VRPayment_Webhook_Orde
 	 *
 	 * @param WC_Order $order order.
 	 * @param mixed $transaction_invoice transaction invoice.
+	 * @param WC_VRPayment_Webhook_Request $request request.
 	 * @return void
 	 */
-	protected function process_order_related_inner( WC_Order $order, $transaction_invoice ) {
-		/* @var \VRPayment\Sdk\Model\TransactionInvoice $transaction_invoice */ //phpcs:ignore
-		switch ( $transaction_invoice->getState() ) {
-			case \VRPayment\Sdk\Model\TransactionInvoiceState::DERECOGNIZED:
-				$order->add_order_note( esc_html__( 'Invoice Not Settled', 'woo-vrpayment' ) );
-				break;
-			case \VRPayment\Sdk\Model\TransactionInvoiceState::NOT_APPLICABLE:
-			case \VRPayment\Sdk\Model\TransactionInvoiceState::PAID:
-				$order->add_order_note( esc_html__( 'Invoice Settled', 'woo-vrpayment' ) );
-				break;
-			default:
-				// Nothing to do.
-				break;
-		}
+	protected function process_order_related_inner( WC_Order $order, $transaction_invoice, $request ) {
+		wc_deprecated_function(
+            __METHOD__,
+            '3.0.12',
+            'WC_VRPayment_Webhook_Transaction_Invoice_Strategy::process_order_related_inner'
+        );
+        $this->strategy->bridge_process_order_related_inner( $order, $transaction_invoice, $request );
 	}
 }

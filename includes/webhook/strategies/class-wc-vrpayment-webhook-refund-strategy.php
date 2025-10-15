@@ -42,7 +42,7 @@ class WC_VRPayment_Webhook_Refund_Strategy extends WC_VRPayment_Webhook_Strategy
 	 * @inheritDoc
 	 * @param WC_VRPayment_Webhook_Request $request The webhook request.
 	 */
-	protected function load_entity( WC_VRPayment_Webhook_Request $request ) {
+	public function load_entity( WC_VRPayment_Webhook_Request $request ) {
 		$refund_service = new \VRPayment\Sdk\Service\RefundService( WC_VRPayment_Helper::instance()->get_api_client() );
 		return $refund_service->read( $request->get_space_id(), $request->get_entity_id() );
 	}
@@ -53,12 +53,24 @@ class WC_VRPayment_Webhook_Refund_Strategy extends WC_VRPayment_Webhook_Strategy
 	 * @inheritDoc
 	 * @param \VRPayment\Sdk\Model\Refund $object The refund object.
 	 */
-	protected function get_order_id( $object ) {
+	public function get_order_id( $object ) {
 		return WC_VRPayment_Entity_Transaction_Info::load_by_transaction(
 			$object->getTransaction()->getLinkedSpaceId(),
 			$object->getTransaction()->getId()
 		)->get_order_id();
 	}
+
+	/**
+	 * Meant to bridge code from deprecated processor.
+	 *
+	 * @param WC_Order $order The WooCommerce order associated with the refund.
+	 * @param \VRPayment\Sdk\Model\Refund $refund The transaction refund object.
+	 * @param WC_VRPayment_Webhook_Request $request The webhook request object.
+	 * @return void
+	 */
+	public function bridge_process_order_related_inner( WC_Order $order, \VRPayment\Sdk\Model\Refund $refund, WC_VRPayment_Webhook_Request $request ) {
+        $this->process_order_related_inner( $order, $refund, $request, true );
+    }
 
 	/**
 	 * Processes the incoming webhook request related to refunds.
@@ -83,12 +95,14 @@ class WC_VRPayment_Webhook_Refund_Strategy extends WC_VRPayment_Webhook_Strategy
 	 *
 	 * @param WC_Order $order The WooCommerce order associated with the refund.
 	 * @param \VRPayment\Sdk\Model\Refund $refund The transaction refund object.
-		 * @param WC_VRPayment_Webhook_Request $request The webhook request object.
+	 * @param WC_VRPayment_Webhook_Request $request The webhook request object.
+	 * @param bool $legacy_mode legacy code used.
 	 * @return void
 	 */
-	protected function process_order_related_inner( WC_Order $order, \VRPayment\Sdk\Model\Refund $refund, WC_VRPayment_Webhook_Request $request ) {
+	protected function process_order_related_inner( WC_Order $order, \VRPayment\Sdk\Model\Refund $refund, WC_VRPayment_Webhook_Request $request, $legacy_mode = false ) {
 		/* @var \VRPayment\Sdk\Model\Refund $refund */
-		switch ( $request->get_state() ) {
+		$entity_state = $legacy_mode ? $refund->getState() : $request->get_state();
+		switch ( $entity_state ) {
 			case \VRPayment\Sdk\Model\RefundState::FAILED:
 				// fallback.
 				$this->failed( $refund, $order );

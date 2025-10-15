@@ -3,7 +3,7 @@
  * Plugin Name: VR Payment
  * Plugin URI: https://wordpress.org/plugins/woo-vrpayment
  * Description: Process WooCommerce payments with VR Payment.
- * Version: 3.3.20
+ * Version: 3.3.21
  * Author: VR Payment GmbH
  * Author URI: https://www.vr-payment.de
  * Text Domain: vrpayment
@@ -12,7 +12,7 @@
  * Requires PHP: 7.4
  * Requires Plugins: woocommerce
  * WC requires at least: 8.0.0
- * WC tested up to 10.2.0
+ * WC tested up to 10.2.2
  * License: Apache-2.0
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  */
@@ -40,15 +40,17 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		const VRPAYMENT_CK_ORDER_REFERENCE = 'wc_vrpayment_order_reference';
 		const VRPAYMENT_CK_ENFORCE_CONSISTENCY = 'wc_vrpayment_enforce_consistency';
 		const VRPAYMENT_CK_CHANGE_ORDER_STATUS = 'wc_vrpayment_change_order_status';
+		const VRPAYMENT_CK_DISABLE_PENDING_EMAIL = 'wc_vrpayment_disable_pending_email';
+		const VRPAYMENT_CK_ENABLE_CUSTOM_STATUS_MAPPING = 'wc_vrpayment_enable_custom_status_mapping';
 		const VRPAYMENT_UPGRADE_VERSION = '3.1.1';
-		const WC_MAXIMUM_VERSION = '10.2.0';
+		const WC_MAXIMUM_VERSION = '10.2.2';
 
 		/**
 		 * WooCommerce VRPayment version.
 		 *
 		 * @var string
 		 */
-		private $version = '3.3.20';
+		private $version = '3.3.21';
 
 		/**
 		 * The single instance of the class.
@@ -801,46 +803,50 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 			return false;
 		}
 
-		/**
-		 * Register order statuses.
-		 *
-		 * @return void
-		 */
-		public function register_order_statuses() {
-			register_post_status(
-				'wc-vrpaym-redirected',
-				array(
-					'label' => 'Processing',
-					'public' => true,
-					'exclude_from_search' => false,
-					'show_in_admin_all_list' => true,
-					'show_in_admin_status_list' => true,
-					/* translators: %s: replaces string */
-					'label_count' => _n_noop( 'VR Payment Processing <span class="count">(%s)</span>', 'VR Payment Processing <span class="count">(%s)</span>', 'woo-vrpayment' ),
+	/**
+	 * Register order statuses.
+	 *
+	 * @return void
+	 */
+	public function register_order_statuses() {
+		$common_args = array(
+			'public' => true,
+			'exclude_from_search' => false,
+			'show_in_admin_all_list' => true,
+			'show_in_admin_status_list' => true,
+		);
+
+		register_post_status(
+			'wc-vrpaym-redirected',
+			array_merge(
+					$common_args,
+					array(
+						'label' => 'Processing',
+						/* translators: %s: replaces string */
+						'label_count' => _n_noop( 'VR Payment Processing <span class="count">(%s)</span>', 'VR Payment Processing <span class="count">(%s)</span>', 'woo-vrpayment' ),
+					)
 				)
 			);
 			register_post_status(
 				'wc-vrpaym-waiting',
-				array(
-					'label' => 'Waiting',
-					'public' => true,
-					'exclude_from_search' => false,
-					'show_in_admin_all_list' => true,
-					'show_in_admin_status_list' => true,
-					/* translators: %s: replaces string */
-					'label_count' => _n_noop( 'Waiting <span class="count">(%s)</span>', 'Waiting <span class="count">(%s)</span>', 'woo-vrpayment' ),
+				array_merge(
+					$common_args,
+					array(
+						'label' => 'Waiting',
+						/* translators: %s: replaces string */
+						'label_count' => _n_noop( 'Waiting <span class="count">(%s)</span>', 'Waiting <span class="count">(%s)</span>', 'woo-vrpayment' ),
+					)
 				)
 			);
 			register_post_status(
 				'wc-vrpaym-manual',
-				array(
-					'label' => 'Manual Decision',
-					'public' => true,
-					'exclude_from_search' => false,
-					'show_in_admin_all_list' => true,
-					'show_in_admin_status_list' => true,
-					/* translators: %s: replaces string */
-					'label_count' => _n_noop( 'Manual Decision <span class="count">(%s)</span>', 'Manual Decision <span class="count">(%s)</span>', 'woo-vrpayment' ),
+				array_merge(
+					$common_args,
+					array(
+						'label' => 'Manual Decision',
+						/* translators: %s: replaces string */
+						'label_count' => _n_noop( 'Manual Decision <span class="count">(%s)</span>', 'Manual Decision <span class="count">(%s)</span>', 'woo-vrpayment' ),
+					)
 				)
 			);
 		}
@@ -848,15 +854,15 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		/**
 		 * Add order statuses.
 		 *
-		 * @param mixed $order_statuses order statuses.
-		 * @return mixed
-		 */
-		public function add_order_statuses( $order_statuses ) {
-			$order_statuses['wc-vrpaym-redirected'] = _x( 'Redirected', 'Order status', 'woocommerce' );
-			$order_statuses['wc-vrpaym-waiting'] = _x( 'Waiting', 'Order status', 'woocommerce' );
-			$order_statuses['wc-vrpaym-manual'] = _x( 'Manual Decision', 'Order status', 'woocommerce' );
+	 * @param mixed $order_statuses order statuses.
+	 * @return mixed
+	 */
+	public function add_order_statuses( $order_statuses ) {
+		$order_statuses['wc-vrpaym-redirected'] = _x( 'Redirected', 'Order status', 'woocommerce' );
+		$order_statuses['wc-vrpaym-waiting'] = _x( 'Waiting', 'Order status', 'woocommerce' );
+		$order_statuses['wc-vrpaym-manual'] = _x( 'Manual Decision', 'Order status', 'woocommerce' );
 
-			return $order_statuses;
+		return $order_statuses;
 		}
 
 		/**
@@ -866,11 +872,13 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		 * @param mixed $order order.
 		 * @return mixed
 		 */
-		public function valid_order_statuses_for_payment( $statuses, $order = null ) { //phpcs:ignore
+	public function valid_order_statuses_for_payment( $statuses, $order = null ) { //phpcs:ignore
+		if ( WC_VRPayment_Helper::is_custom_status_mapping_enabled() ) {
 			$statuses[] = 'vrpaym-redirected';
-
-			return $statuses;
 		}
+
+		return $statuses;
+	}
 
 		/**
 		 * Handles AJAX request to save order status changes.
@@ -1066,9 +1074,11 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		 * @return mixed
 		 */
 		public function valid_order_status_for_completion( $statuses, WC_Order $order = null ) { //phpcs:ignore
-			$statuses[] = 'vrpaym-waiting';
-			$statuses[] = 'vrpaym-manual';
-			$statuses[] = 'vrpaym-redirected';
+			if ( WC_VRPayment_Helper::is_custom_status_mapping_enabled() ) {
+				$statuses[] = 'vrpaym-waiting';
+				$statuses[] = 'vrpaym-manual';
+				$statuses[] = 'vrpaym-redirected';
+			}
 
 			return $statuses;
 		}

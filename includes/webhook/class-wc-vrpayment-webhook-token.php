@@ -34,7 +34,12 @@ class WC_VRPayment_Webhook_Token extends WC_VRPayment_Webhook_Abstract {
 	 * @throws \VRPayment\Sdk\VersioningException VersioningException.
 	 */
 	public function process( WC_VRPayment_Webhook_Request $request ) {
-		$token_service = WC_VRPayment_Service_Token::instance();
-		$token_service->update_token( $request->get_space_id(), $request->get_entity_id() );
+		wc_deprecated_function(
+            __METHOD__,
+            '3.0.12',
+            'WC_VRPayment_Webhook_Token_Strategy::process'
+        );
+		$strategy = new WC_VRPayment_Webhook_Token_Strategy();
+		$strategy->process( $request );
 	}
 }
