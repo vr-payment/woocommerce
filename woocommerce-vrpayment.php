@@ -3,7 +3,7 @@
  * Plugin Name: VR Payment
  * Plugin URI: https://wordpress.org/plugins/woo-vrpayment
  * Description: Process WooCommerce payments with VR Payment.
- * Version: 3.3.22
+ * Version: 3.3.23
  * Author: VR Payment GmbH
  * Author URI: https://www.vr-payment.de
  * Text Domain: vrpayment
@@ -50,7 +50,7 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		 *
 		 * @var string
 		 */
-		private $version = '3.3.22';
+		private $version = '3.3.23';
 
 		/**
 		 * The single instance of the class.
