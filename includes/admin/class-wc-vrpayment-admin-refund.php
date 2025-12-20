@@ -103,8 +103,8 @@ class WC_VRPayment_Admin_Refund {
 					$transaction_info->get_transaction_id()
 				);
 				if ( $existing_refund_job->get_id() > 0 ) {
-					printf( '<span class="vrpayment-action-in-progress">%s</span>', esc_html( esc_html__( 'There is a refund in progress.', 'woo-vrpayment' ) ) );
-					printf( '<button type="button" class="button vrpayment-update-order">%s</button>', esc_html( esc_html__( 'Update', 'woo-vrpayment' ) ) );
+					printf( '<span class="vrpayment-action-in-progress">%s</span>', esc_html__( 'There is a refund in progress.', 'woo-vrpayment' ) );
+					printf( '<button type="button" class="button vrpayment-update-order">%s</button>', esc_html__( 'Update', 'woo-vrpayment' ) );
 					printf( '<span id="vrpayment-remove-refund" style="display:none;"></span>' );
 				}
 				printf( '<span id="vrpayment-refund-restrictions" style="display:none;"></span>' );
