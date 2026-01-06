@@ -205,7 +205,7 @@ class WC_VRPayment_Admin_Settings_Page extends WC_Settings_Page {
 		$settings = array(
 			array(
 				'links' => array(
-					'https://docs.plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.3.23/docs/en/documentation.html' => esc_html__( 'Documentation', 'woo-vrpayment' ),
+					'https://docs.plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.4.0/docs/en/documentation.html' => esc_html__( 'Documentation', 'woo-vrpayment' ),
 					'https://gateway.vr-payment.de/user/login' => esc_html__( 'Sign Up', 'woo-vrpayment' ),
 				),
 				'type'  => 'vrpayment_links',
@@ -317,7 +317,7 @@ class WC_VRPayment_Admin_Settings_Page extends WC_Settings_Page {
 
 			array(
 				'title' => esc_html__( 'Space View Id', 'woo-vrpayment' ),
-				'desc_tip' => esc_html__( 'This field allows you to apply custom styling to the payment form and payment page.\nThe styling is defined in your Space settings in the Portal.', 'woo-vrpayment' ),
+				'desc_tip' => esc_html__( 'This field allows you to apply custom styling to the payment form and payment page. The styling is defined in your Space settings in the Portal.', 'woo-vrpayment' ),
 				'id' => WooCommerce_VRPayment::VRPAYMENT_CK_SPACE_VIEW_ID,
 				'type' => 'number',
 				'css' => 'min-width:300px;',
@@ -451,58 +451,79 @@ TEXT
 		$is_custom_status_mapping_enabled = WC_VRPayment_Helper::is_custom_status_mapping_enabled();
 
 		$settings[] = array(
-		  'title'   => esc_html__( 'Enable Custom Status Mapping', 'woo-vrpayment' ),
-		  'desc'    => esc_html__( 'If enabled, custom statuses (Manual Decision, etc.) will be used instead of WooCommerce defaults.', 'woo-vrpayment' ),
-		  'id'      => WooCommerce_VRPayment::VRPAYMENT_CK_ENABLE_CUSTOM_STATUS_MAPPING,
-		  'type'    => 'checkbox',
-		  'default' => 'no',
-		  'css'     => 'min-width:300px;',
+			'title' => esc_html__( 'Order Status Settings', 'woo-vrpayment' ),
+			'type' => 'title',
+			'id' => 'order_status_mapping_options',
+			'desc' => esc_html__( 'Control how WooCommerce order statuses are mapped to VRPayment transaction states.', 'woo-vrpayment' ),
 		);
 
 		$settings[] = array(
-			'title' => __( 'Order Status Settings', 'woo-vrpayment' ),
-			'type' => 'title',
-			'id' => 'order_status_mapping_options',
-			'desc' => $is_custom_status_mapping_enabled
-				? __( 'Map WooCommerce Order Statuses to VRPayment Transaction Statuses to ensure seamless integration and consistent order tracking across both platforms.', 'woo-vrpayment' ) . '
-					<table class="form-table" style="width: 100%;">
-						<thead>
-							<tr style="">
-								<th scope="row" class="titledesc">' . __( 'VRPayment payment status', 'woo-vrpayment' ) . '</th>
-								<th class="forminp forminp-select" style="width: 100%;"><label style="margin: 0 10px;">' . __( 'WooCommerce Order Status', 'woo-vrpayment' ) . '</label></th>
-							</tr>
-						</thead>
-					</table>'
-				: __( 'Custom statuses are disabled. Enable custom status mapping above to configure individual mappings.', 'woo-vrpayment' ),
+			'title' => esc_html__( 'Enable Custom Status Mapping', 'woo-vrpayment' ),
+			'desc' => esc_html__( 'If enabled, custom statuses (such as Manual Decision) will be used instead of the default WooCommerce statuses.', 'woo-vrpayment' ),
+			'id' => WooCommerce_VRPayment::VRPAYMENT_CK_ENABLE_CUSTOM_STATUS_MAPPING,
+			'type'    => 'checkbox',
+			'default' => 'no',
+			'css'     => 'min-width:300px;',
 		);
 
 		if ( $is_custom_status_mapping_enabled ) {
+			$settings[] = array(
+				'title' => esc_html__( 'Status Mappings', 'woo-vrpayment' ),
+				'type' => 'title',
+				'id' => 'order_status_mappings',
+				'desc' => esc_html__( 'Choose which WooCommerce order status should be used for each VRPayment transaction status.', 'woo-vrpayment' ),
+			);
+
+			$settings[] = array(
+				'title' => '',
+				'type' => 'title',
+				'id' => 'order_status_mappings_header',
+				'desc'  => sprintf(
+					'<div class="vrpayment-status-mapping-header">
+						<span class="vrpayment-status-mapping-col-left">%s</span>
+						<span class="vrpayment-status-mapping-col-right">%s</span>
+					</div>'
+					,
+					esc_html__( 'VRPayment payment status', 'woo-vrpayment' ),
+					esc_html__( 'WooCommerce Order Status', 'woo-vrpayment' )
+				),
+			);
+
 			$woocommerce_statuses = apply_filters( 'vrpayment_woocommerce_statuses', array() );
 			$vrpayment_statuses = apply_filters( 'vrpayment_order_statuses', array() );
 			$default_mappings = apply_filters( 'vrpayment_default_order_status_mappings', array() );
 
 			foreach ( $vrpayment_statuses as $status_key => $status_label ) {
 				$default_mapped_status = isset( $default_mappings[ $status_key ] ) ? $default_mappings[ $status_key ] : '';
+				$sanitized_status_label = sanitize_text_field( $status_label );
 
 				$settings[] = array(
-					'title' => __( $status_label, 'woo-vrpayment' ), // phpcs:ignore
+					'title' => esc_html( $sanitized_status_label ),
 					'id' => WC_VRPayment_Order_Status_Adapter::VRPAYMENT_ORDER_STATUS_MAPPING_PREFIX . $status_key,
 					'type' => 'select',
-					'options' => array_map( function ( $status ) {
-							return __( $status, 'woo-vrpayment' ); // phpcs:ignore
+					'options' => array_map(
+						function ( $status ) {
+							return esc_html( sanitize_text_field( $status ) );
 						},
 						$woocommerce_statuses
 					),
 					/* translators: %s: replaces string */
-					'default' => sprintf( __( '%s', 'woo-vrpayment' ), $default_mapped_status ), // phpcs:ignore
-					'desc' => sprintf( __( 'Set a custom WooCommerce order status to be applied automatically when a transaction is in the %s state.', 'woo-vrpayment' ), strtolower( __( $status_label, 'woo-vrpayment' ) ) ), // phpcs:ignore
+					'default' => esc_html( sanitize_text_field( $default_mapped_status ) ), // phpcs:ignore
+					'desc' => sprintf(
+						__( 'Set a custom WooCommerce order status to be applied automatically when a transaction is in the %s state.', 'woo-vrpayment' ),
+						strtolower( $sanitized_status_label )
+					),
 				);
 			}
+			$settings[] = array(
+				'type' => 'sectionend',
+				'id' => 'order_status_mappings',
+			);
 		}
 
 		$settings[] = array(
 			'type' => 'sectionend',
-			'id' => 'status_mapping_options',
+			'id' => 'order_status_mapping_options',
 		);
 
 
@@ -557,7 +578,6 @@ TEXT
 		return ucwords( str_replace( '_', ' ', $display_string ) );
 	}
 
-
 	/**
 	 * Enqueue scripts.
 	 */
@@ -608,5 +628,22 @@ TEXT
 			'vrpaymentOrderStatusesLocalizeScript',
 			$localized_object
 		);
+		echo '
+		<style>
+			.vrpayment-status-mapping-header {
+				display: flex;
+				font-weight: 600;
+				font-size: 1.3em;
+				margin: 1em 0;
+				color: #1d2327;
+			}
+			.vrpayment-status-mapping-col-left {
+				width: 200px;
+				padding-right: 24px;
+			}
+			.vrpayment-status-mapping-col-right {
+				padding: 0 10px;
+			}
+		</style>';
 	}
 }

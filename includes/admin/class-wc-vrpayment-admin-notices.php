@@ -107,5 +107,14 @@ class WC_VRPayment_Admin_Notices {
 	public static function plugin_deactivated() {
 		require_once WC_VRPAYMENT_ABSPATH . 'views/admin-notices/plugin-deactivated.php';
 	}
+
+	/**
+	 * Subscription plugin deactivated.
+	 *
+	 * @return void
+	 */
+	public static function subscription_plugin_deactivated() {
+		require_once WC_VRPAYMENT_ABSPATH . 'views/admin-notices/subscription-plugin-deactivate.php';
+	}
 }
 WC_VRPayment_Admin_Notices::init();
