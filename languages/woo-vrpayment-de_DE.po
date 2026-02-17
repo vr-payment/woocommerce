@@ -205,7 +205,7 @@ msgstr "Einstellungen"
 
 #: includes/admin/class-wc-vrpayment-admin.php:256
 #: includes/admin/class-wc-vrpayment-admin.php:267
-msgid "Send attribute to VR Payment."
+msgid "Send attribute to VR Payment"
 msgstr "Übermittle das Attribute an VR Payment."
 
 #: includes/admin/class-wc-vrpayment-admin-refund.php:60

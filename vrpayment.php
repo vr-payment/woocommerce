@@ -3,16 +3,16 @@
  * Plugin Name: VR Payment
  * Plugin URI: https://wordpress.org/plugins/woo-vrpayment
  * Description: Process WooCommerce payments with VR Payment.
- * Version: 3.4.0
+ * Version: 3.4.1
  * Author: VR Payment GmbH
  * Author URI: https://www.vr-payment.de
- * Text Domain: vrpayment
+ * Text Domain: woo-vrpayment
  * Domain Path: /languages/
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Requires Plugins: woocommerce
  * WC requires at least: 8.0.0
- * WC tested up to 10.4.3
+ * WC tested up to 10.5.1
  * License: Apache-2.0
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  */
@@ -43,7 +43,7 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		const VRPAYMENT_CK_DISABLE_PENDING_EMAIL = 'wc_vrpayment_disable_pending_email';
 		const VRPAYMENT_CK_ENABLE_CUSTOM_STATUS_MAPPING = 'wc_vrpayment_enable_custom_status_mapping';
 		const VRPAYMENT_UPGRADE_VERSION = '3.1.1';
-		const WC_MAXIMUM_VERSION = '10.4.3';
+		const WC_MAXIMUM_VERSION = '10.5.1';
 		const REQUIRED_WC_SUBSCRIPTION_VERSION = '2.5';
 
 		/**
@@ -51,7 +51,7 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		 *
 		 * @var string
 		 */
-		private $version = '3.4.0';
+		private $version = '3.4.1';
 
 		/**
 		 * The single instance of the class.
@@ -521,11 +521,6 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		 * - WP_LANG_DIR/woo-vrpayment/woo-vrpayment-LOCALE.mo
 		 */
 		public function load_plugin_textdomain() {
-			$locale = is_admin() && function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale();
-			$locale = apply_filters( 'plugin_locale', $locale, 'woo-vrpayment' );
-
-			load_textdomain( 'woo-vrpayment', WP_LANG_DIR . '/woo-vrpayment/woo-vrpayment' . $locale . '.mo' );
-			load_plugin_textdomain( 'woo-vrpayment', false, plugin_basename( __DIR__ ) . '/languages' );
 		}
 
 		/**
@@ -533,8 +528,8 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		 */
 		public function loaded() {
 
-			// Set up localisation.
-			$this->load_plugin_textdomain();
+			// WordPress.org will auto-load translations. No need to call load_plugin_textdomain().
+			// $this->load_plugin_textdomain();
 			add_action('plugins_loaded', function () {
 				if (class_exists('WC_Payment_Gateway')) {
 					require_once WC_VRPAYMENT_ABSPATH . 'includes/class-wc-vrpayment-zero-gateway.php';
@@ -1480,13 +1475,17 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		 * Edit through REST API is handled in woocommerce_rest_insert_product_attribute, as we can not get the rest request object otherwise.
 		 */
 		public function woocommerce_attribute_added( $attribute_id, $data ) { //phpcs:ignore
-			if ( did_action( 'product_page_product_attributes' ) ) {
-				// edit through backend form, check POST data.
-				$option_set = isset( $_POST['vrpayment_attribute_option_send'] );
-				$attribute_option_send = wp_unslash( $option_set ) ?? false;
-				$send = wp_verify_nonce( $attribute_option_send ) ? 1 : 0;
-				$this->update_attribute_options( $attribute_id, $send );
+			if ( ! did_action( 'product_page_product_attributes' ) ) {
+				return;
 			}
+			$nonce = isset( $_POST['vrpayment_attribute_option_send_nonce'] )
+				? sanitize_text_field( wp_unslash( $_POST['vrpayment_attribute_option_send_nonce'] ) )
+				: '';
+			if ( ! $nonce || ! wp_verify_nonce( $nonce, 'vrpayment_attribute_option_send' ) ) {
+				return;
+			}
+			$send = ! empty( $_POST['vrpayment_attribute_option_send'] ) ? 1 : 0;
+			$this->update_attribute_options( $attribute_id, $send );
 		}
 
 		/**

@@ -60,7 +60,7 @@ class WC_VRPayment_Admin_Transaction {
 			: 'shop_order';
 		add_meta_box(
 			'woocommerce-order-vrpayment-transaction',
-			__( 'VR Payment Transaction', 'woocommerce-vrpayment' ),
+			__( 'VR Payment Transaction', 'woo-vrpayment' ),
 			array(
 				__CLASS__,
 				'output',
