@@ -3,7 +3,7 @@ Contributors: VR Payment GmbH
 Tags: payment, VR Payment, e-commerce, invoice, psp
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 3.4.2
+Stable tag: 3.4.4
 License: Apache-2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -13,7 +13,7 @@ Accept payments in WooCommerce with VR Payment.
 
 Website: [https://www.vr-payment.de/](https://www.vr-payment.de/)
 
-The plugin offers an easy and convenient way to accept credit cards and all other payment methods listed below fast and securely. The payment forms will be fully integrated in your checkout and for credit cards there is no redirection to a payment page needed anymore. The pages are by default mobile optimized but the look and feel can be changed according the merchants needs.
+The plugin offers an easy and convenient way to accept credit cards and all other payment methods, offered by VR Payment fast and securely. The payment forms will be fully integrated in your checkout and for credit cards there is no redirection to a payment page needed anymore. The pages are by default mobile optimized but the look and feel can be changed according the merchants needs.
 
 This plugin will add support for all VR Payment payments methods and connect the VR Payment servers to your WooCommerce webshop.
 To use this extension, a VR Payment account is required. Sign up on [VR Payment](https://gateway.vr-payment.de/user/login).
@@ -21,7 +21,20 @@ To use this extension, a VR Payment account is required. Sign up on [VR Payment]
 == Documentation ==
 
 Additional documentation for this plugin is available:
-[here](https://docs.plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.4.2/docs/en/documentation.html).
+[here](https://docs.plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.4.4/docs/en/documentation.html).
+
+== Support ==
+Our technical support is available 24/7 at gateway@vr-payment.de or by phone at +49 (0)721 1209-66004.
+If you have any questions about your contract, you can contact us Monday through Friday from 8 a.m. to 6 p.m. at haendlerservice@vr-payment.de or by phone at +49 (0)721 1209-66003.
+For further information, please visit our [website](https://www.vr-payment.de/hotline).
+
+== Privacy Policy ==
+
+Enquiries about our privacy policy can be made on the [VR Payment privacy policies site](https://en.vrpayment.com/legal/privacy-policy).
+
+== Terms of use ==
+
+Enquiries about our terms of use can be made on the [VR Payment terms of use site](https://en.vrpayment.com/legal/agb).
 
 == Source code and build process ==
 
@@ -46,19 +59,16 @@ This plugin loads a device-identification script from the VR Payment gateway to 
 - **Purpose:** Device fingerprinting/session continuity to secure transactions
 - **Policies:** See the service provider’s terms of use and privacy policy linked below in the “Privacy Policy” and “Terms of use” sections
 
-== Support ==
+== Payment Methods ==
 
-Support queries can be issued on the [VR Payment support site](https://www.vr-payment.de/hotline).
+For a complete list of payment methods, please refer to the VR-Payment Gateway under “Payment Methods.” Among others, the following payment methods are available:
 
-== Privacy Policy ==
-
-Enquiries about our privacy policy can be made on the [VR Payment privacy policies site](https://en.vrpayment.com/legal/privacy-policy).
-
-== Terms of use ==
-
-Enquiries about our terms of use can be made on the [VR Payment terms of use site](https://en.vrpayment.com/legal/agb).
-
-== Installation ==
+- **Credit and debit cards:** Visa, Mastercard, AMEX, Diners, Discover, JCB
+- **Purchase on account**
+- **Buy now, pay later**
+- **Wero**
+- **PayPal**
+- **SEPA (Direct Debit)**
 
 = Minimum Requirements =
 
@@ -81,14 +91,12 @@ Enquiries about our terms of use can be made on the [VR Payment terms of use sit
 4. Set your credentials at WooCommerce -> Settings -> VR Payment (or use the *Settings* link in the Plugins overview)
 5. You're done, the active payment methods should be visible in the checkout of your webshop.
 
-
 == Changelog ==
 
-= 3.4.2 - March 9th 2026 =
+= 3.4.3 - March 9th 2026 =
 - [Feature] Tested against Wordpress 7
-- [Bugfix] Fixed issue with rounding leading to totals discrepency
-- [Bugfix] Fixed fatal error with missing attribute when using the Polylang plugin
+- [BugFix] Solved issue with session type detection
 - [Tested Against] PHP 8.2
-- [Tested Against] Wordpress 7.x-beta 
+- [Tested Against] Wordpress 7.x-beta
 - [Tested Against] Woocommerce 10.5.1
 - [Tested Against] PHP SDK 4.8.1

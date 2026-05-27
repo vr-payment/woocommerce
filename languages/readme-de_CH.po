@@ -1,0 +1,173 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: vrpayment-woo\n"
+"Language: de_CH\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "Accept payments in WooCommerce with VR Payment."
+msgstr "Akzeptieren Sie Zahlungen in WooCommerce mit VR Payment."
+
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid "Website:"
+msgstr "Webseite:"
+
+msgid "The plugin offers an easy and convenient way to accept credit cards and all other payment methods, offered by VR Payment fast and securely. The payment forms will be fully integrated in your checkout and for credit cards there is no redirection to a payment page needed anymore. The pages are by default mobile optimized but the look and feel can be changed according the merchants needs."
+msgstr "Das Plugin bietet eine einfache und bequeme Möglichkeit, Kreditkarten und alle anderen über da VR-Payment-Gateway angebotenen Zahlungsmethoden schnell und sicher zu akzeptieren. Die Bezahlseiten werden vollständig in Ihren Checkout integriert, und für Kreditkarten ist keine Weiterleitung zu einer Bezahlseite mehr erforderlich. Die Seiten sind standardmäßig für Mobilgeräte optimiert, aber das Erscheinungsbild kann für Ihre Bedürfnisse angepasst werden."
+
+msgid "This plugin will add support for all VR Payment payments methods and connect the VR Payment servers to your WooCommerce webshop."
+msgstr "Dieses Plugin stellt Ihrem Shop alle Zahlarten der VR Payment zur Verfügung und verbindet die VR Payment-Server mit Ihrem WooCommerce-Webshop."
+
+msgid "To use this extension, a VR Payment account is required. Sign up on"
+msgstr "Um dieses Pluigin nutzen zu können, ist ein Konte auf dem VR Payment-Gateway erforderlich. Clicken Sie hier, um ein Konto im VR Payment-Gateway zu erstellen."
+
+msgid "Documentation"
+msgstr "Dokumentation"
+
+msgid "Additional documentation for this plugin is available here:"
+msgstr "Weitere Dokumentation zu diesem Plugin finden Sie hier."
+
+msgid "Support"
+msgstr "Support"
+
+msgid "Our technical support is available 24/7 at gateway@vr-payment.de or by phone at +49 (0)721 1209-66004."
+msgstr "Unser technischer Support ist 24/7 unter der gateway@vr-payment.de oder per Telefon unter der +49 (0)721 1209-66004 erreichbar."
+
+msgid "If you have any questions about your contract, you can contact us Monday through Friday from 8 a.m. to 6 p.m. at haendlerservice@vr-payment.de or by phone at +49 (0)721 1209-66003."
+msgstr "Für Fragen zu Ihrem Vertrag können Sie uns Montag bis Freitag von 8 bis 18 Uhr unter der haendlerservice@vr-payment.de oder telefonisch unter der +49 (0)721 1209-66003 erreichen."
+
+msgid "For further information, please visit our"
+msgstr "Für weitere Informationen können Sie unsere"
+
+msgid "website"
+msgstr "Website"
+
+msgid "Privacy Policy"
+msgstr "Datenschutzerklärung"
+
+msgid "Enquiries about our privacy policy can be made on the"
+msgstr "Die Datenschutzerklärung der VR Payment ist"
+
+msgid "VR Payment privacy policies site"
+msgstr "hier aufrufbar"
+
+msgid "Terms of use"
+msgstr "Nutzungsbedingungen"
+
+msgid "Enquiries about our terms of use can be made on the"
+msgstr "Die Nutzungsbedingungen für dieses Plugin sind"
+
+msgid "VR Payment terms of use site"
+msgstr "hier aufrufbar"
+
+msgid "Source code and build process"
+msgstr "Quellcode und Erstellungsprozess"
+
+msgid "This plugin ships a compiled WooCommerce Blocks bundle at `assets/js/frontend/blocks/build/index.js`. The human-readable source code is included in `assets/js/frontend/blocks/src/` alongside `webpack.config.js`."
+msgstr "Dieses Plugin enthält ein kompiliertes WooCommerce-Blocks-Paket unter assets/js/frontend/blocks/build/index.js. Der für Menschen gut lesbare Quellcode ist enthalten in assets/js/frontend/blocks/src/ neben webpack.config.js."
+
+msgid "This regenerates `build/index.js` and `build/index.asset.php` from the sources included with the plugin."
+msgstr "Dadurch werden build/index.js und build/index-asset.php aus den im Plugin enthaltenen Quellen neu generiert."
+
+msgid "External Services"
+msgstr "Externe Dienste"
+
+msgid "This plugin loads a device-identification script from the VR Payment gateway to secure checkout and payment flows."
+msgstr "Dieses Plugin lädt ein Skript zur Geräteidentifizierung vom VR Payment Gateway, um den Checkout- und Zahlungsvorgang zu sichern."
+
+msgid "Service"
+msgstr "Service"
+
+msgid "Service:"
+msgstr "Service:"
+
+msgid "VR Payment device identification"
+msgstr "VR-Payment Geräteidentifizierung"
+
+msgid "Endpoint/domain:"
+msgstr "Endpoint/Domain:"
+
+msgid "Base gateway URL (default https://gateway.vr-payment.de/), script path /s/{spaceId}/payment/device.js"
+msgstr "Gateway-URL (Default: https://gateway.vr-payment.de/), Skriptpfad /s/{spaceId}/payment/device.js"
+
+msgid "Data sent:"
+msgstr "Gesendete Daten:"
+
+msgid "`sessionIdentifier` (value from cookie `vrpayment_device_id`, a unique device/session ID) and the configured space ID in the request path; no payment or PII fields are sent by this script"
+msgstr "`sessionIdentifier` (Ein Wert aus dem Cookie `vrpayment_device_id`, eine Unique Device/Session ID) und die konfigurierte Space-ID im Request-Pfad; dieses Skript sendet keine Payment- oder PII-Felder"
+
+msgid "When:"
+msgstr "Zeitpunkt:"
+
+msgid "Enqueued on cart/checkout page load; the identifier is stored in the browser for up to one year to keep sessions consistent and prevent fraud"
+msgstr "Wird beim Laden der Warenkorb-/Kassenseite in die Queue gestellt; die Kennung wird bis zu einem Jahr im Browser gespeichert, um die Konsistenz der Sitzungen zu gewährleisten und Betrug zu verhindern"
+
+msgid "Purpose:"
+msgstr "Zweck:"
+
+msgid "Device fingerprinting/session continuity to secure transactions"
+msgstr "Device-Fingerprinting/Session-Kontinuität zur Sicherung von Transaktionen"
+
+msgid "Policies:"
+msgstr "Richtlinien:"
+
+msgid "See the service provider’s terms of use and privacy policy linked below in the “Privacy Policy” and “Terms of use” sections"
+msgstr "Die Richtlinien können in den Abschnitten Datenschutzerklärung und Nutzungsbedingungen eingesehen werden"
+
+msgid "Payment Methods"
+msgstr "Verfügbare Zahlarten"
+
+msgid "For a complete list of payment methods, please refer to the VR-Payment Gateway under “Payment Methods.” Among others, the following payment methods are available:"
+msgstr "Für eine vollständige Liste der Zahlarten, schauen Sie bitte im VR-Payment Gateway unter „Zahlarten“ nach. Unter anderem sind folgende Zahlarten verfügbar:"
+
+msgid "Credit and debit cards:"
+msgstr "Kredit- und Debitkarten:"
+
+msgid "Purchase on account"
+msgstr "Kauf auf Rechnung"
+
+msgid "Minimum Requirements"
+msgstr "Mindestanforderungen"
+
+msgid "PHP version 5.6 or greater"
+msgstr "PHP Version 5.6 oder höher"
+
+msgid "WordPress 4.7 up to 6.6"
+msgstr "WordPress 4.7 bis 6.6"
+
+msgid "WooCommerce 3.0.0 up to 9.8.5"
+msgstr "WooCommerce 3.0.0 bis 9.8.5"
+
+msgid "Automatic installation"
+msgstr "Automatische Installation"
+
+msgid "Install the plugin via Plugins -> New plugin. Search for 'VR Payment'."
+msgstr "Installieren Sie das Plugin über Plugins -> Neues Plugin. Suchen Sie nach ‘VR Payment’."
+
+msgid "Activate the 'VR Payment' plugin through the 'Plugins' menu in WordPress"
+msgstr "Aktivieren Sie das Plugin ‘VR Payment’ über das Menü ‘Plugins’ in WordPress."
+
+msgid "Set your VR Payment credentials at WooCommerce -> Settings -> VR Payment (or use the *Settings* link in the Plugins overview)"
+msgstr "Tragen Sie die IDs aus dem VR Payment Gateway unter WooCommerce -> Einstellungen -> VR Payment (oder nutzen Sie den Link Einstellungen in der Plugin-Übersicht) ein."
+
+msgid "You're done, the active payment methods should be visible in the checkout of your webshop."
+msgstr "Das war`s schon! Alle von Ihnen im VR-Payment Gateway aktivierten Zahlarten sollten im Checkout Ihres Webshops angezeigt werden."
+
+msgid "Manual installation"
+msgstr "Manuelle Installation"
+
+msgid "Unpack the downloaded package."
+msgstr "Laden Sie die ZIP-Datei aus unserem GitHub herunter."
+
+msgid "Upload the directory to the `/wp-content/plugins/` directory"
+msgstr "Laden Sie diese in `/wp-content/plugins/` directory hoch."
+
+msgid "Activate the 'VR Payment' plugin through the 'Plugins' menu in WordPress"
+msgstr "Aktivieren Sie das Plugin ‘VR Payment’ über das Menü ‘Plugins’ in WordPress."
+
+msgid "Set your credentials at WooCommerce -> Settings -> VR Payment (or use the *Settings* link in the Plugins overview)"
+msgstr "Tragen Sie die IDs aus dem VR Payment Gateway unter WooCommerce -> Einstellungen -> VR Payment (oder nutzen Sie den Link Einstellungen in der Plugin-Übersicht) ein."
+
+msgid "You're done, the active payment methods should be visible in the checkout of your webshop."
+msgstr "Das war`s schon! Alle von Ihnen im VR-Payment Gateway aktivierten Zahlarten sollten im Checkout Ihres Webshops angezeigt werden."
