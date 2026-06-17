@@ -3,7 +3,7 @@ Contributors: VR Payment GmbH
 Tags: payment, VR Payment, e-commerce, invoice, psp
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 3.4.4
+Stable tag: 3.4.5
 License: Apache-2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -21,7 +21,7 @@ To use this extension, a VR Payment account is required. Sign up on [VR Payment]
 == Documentation ==
 
 Additional documentation for this plugin is available:
-[here](https://docs.plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.4.4/docs/en/documentation.html).
+[here](https://docs.plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.4.5/docs/en/documentation.html).
 
 == Support ==
 Our technical support is available 24/7 at gateway@vr-payment.de or by phone at +49 (0)721 1209-66004.
@@ -93,10 +93,9 @@ For a complete list of payment methods, please refer to the VR-Payment Gateway u
 
 == Changelog ==
 
-= 3.4.3 - March 9th 2026 =
-- [Feature] Tested against Wordpress 7
-- [BugFix] Solved issue with session type detection
+= 3.4.5 - June 17th 2026 =
+- [BugFix] Solved issue with pay button appearing for Bank Transfer
 - [Tested Against] PHP 8.2
-- [Tested Against] Wordpress 7.x-beta
-- [Tested Against] Woocommerce 10.5.1
+- [Tested Against] Wordpress 7
+- [Tested Against] Woocommerce 10.8.1
 - [Tested Against] PHP SDK 4.8.1
