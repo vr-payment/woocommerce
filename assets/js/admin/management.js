@@ -1,7 +1,7 @@
 /**
  *
  * VRPayment
- * This plugin will add support for all VRPayment payments methods and connect the VRPayment servers to your WooCommerce webshop (https://www.vr-payment.de/).
+ * This plugin will add support for all VRPayment payments methods and connect the VRPayment servers to your WooCommerce webshop (https://www.vr-payment.de).
  *
  * @package  VRPayment
  * @author   VR Payment GmbH (https://www.vr-payment.de)

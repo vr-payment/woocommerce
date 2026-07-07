@@ -6,7 +6,7 @@
  * Domain Path: /languages/
  *
  * VRPayment
- * This plugin will add support for all VRPayment payments methods and connect the VRPayment servers to your WooCommerce webshop (https://www.vr-payment.de/).
+ * This plugin will add support for all VRPayment payments methods and connect the VRPayment servers to your WooCommerce webshop (https://www.vr-payment.de).
  *
  * @category Class
  * @package  VRPayment
@@ -56,6 +56,15 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	public function process( WC_VRPayment_Webhook_Request $request ) {
 		$order = $this->get_order( $request );
 		$entity = $this->load_entity( $request );
+
+		// retry orphaned transaction, fall back to merchant reference
+		if ( ( false === $order || ! $order->get_id() ) && $entity ) {
+			$merchant_ref = $entity->getMerchantReference();
+			if ( ! empty( $merchant_ref ) ) {
+				$order = WC_Order_Factory::get_order( (int) $merchant_ref );
+			}
+		}
+
 		if ( false != $order && $order->get_id() ) {
 			$this->process_order_related_inner( $order, $entity );
 			if ($request->get_state() === \VRPayment\Sdk\Model\TransactionState::AUTHORIZED) {
@@ -194,6 +203,9 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	 * @return void
 	 */
 	protected function decline( \VRPayment\Sdk\Model\Transaction $transaction, WC_Order $order ) {
+		if ( $order->has_status( array( 'processing', 'completed' ) ) ) {
+			return;
+		}
 		do_action( 'wc_vrpayment_declined', $transaction, $order );
 		$default_status = apply_filters( 'wc_vrpayment_decline_status', 'cancelled', $order );
 		apply_filters( 'vrpayment_order_update_status', $order, \VRPayment\Sdk\Model\TransactionState::DECLINE, $default_status );
@@ -265,6 +277,9 @@ class WC_VRPayment_Webhook_Transaction_Strategy extends WC_VRPayment_Webhook_Str
 	 * @return void
 	 */
 	protected function voided( \VRPayment\Sdk\Model\Transaction $transaction, WC_Order $order ) {
+		if ( $order->has_status( array( 'processing', 'completed' ) ) ) {
+			return;
+		}
 		$default_status = apply_filters( 'wc_vrpayment_voided_status', 'cancelled', $order );
 		apply_filters( 'vrpayment_order_update_status', $order, \VRPayment\Sdk\Model\TransactionState::VOIDED, $default_status );
 		do_action( 'wc_vrpayment_voided', $transaction, $order );

@@ -6,7 +6,7 @@
  * Domain Path: /languages/
  *
  * VRPayment
- * This plugin will add support for all VRPayment payments methods and connect the VRPayment servers to your WooCommerce webshop (https://www.vr-payment.de/).
+ * This plugin will add support for all VRPayment payments methods and connect the VRPayment servers to your WooCommerce webshop (https://www.vr-payment.de).
  *
  * @category Class
  * @package  VRPayment
