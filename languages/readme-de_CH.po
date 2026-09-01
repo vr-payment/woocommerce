@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: vrpayment-woo\n"
+"Project-Id-Version: whitelabelmachinename-woo\n"
 "Language: de_CH\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
@@ -13,13 +13,13 @@ msgstr "Beschreibung"
 msgid "Website:"
 msgstr "Webseite:"
 
-msgid "The plugin offers an easy and convenient way to accept credit cards and all other payment methods, offered by VR Payment fast and securely. The payment forms will be fully integrated in your checkout and for credit cards there is no redirection to a payment page needed anymore. The pages are by default mobile optimized but the look and feel can be changed according the merchants needs."
+msgid "The plugin offers an easy and convenient way to accept credit cards and all other payment methods, offered by WhiteLabelName fast and securely. The payment forms will be fully integrated in your checkout and for credit cards there is no redirection to a payment page needed anymore. The pages are by default mobile optimized but the look and feel can be changed according the merchants needs."
 msgstr "Das Plugin bietet eine einfache und bequeme Möglichkeit, Kreditkarten und alle anderen über da VR-Payment-Gateway angebotenen Zahlungsmethoden schnell und sicher zu akzeptieren. Die Bezahlseiten werden vollständig in Ihren Checkout integriert, und für Kreditkarten ist keine Weiterleitung zu einer Bezahlseite mehr erforderlich. Die Seiten sind standardmäßig für Mobilgeräte optimiert, aber das Erscheinungsbild kann für Ihre Bedürfnisse angepasst werden."
 
-msgid "This plugin will add support for all VR Payment payments methods and connect the VR Payment servers to your WooCommerce webshop."
+msgid "This plugin will add support for all WhiteLabelName payments methods and connect the WhiteLabelName servers to your WooCommerce webshop."
 msgstr "Dieses Plugin stellt Ihrem Shop alle Zahlarten der VR Payment zur Verfügung und verbindet die VR Payment-Server mit Ihrem WooCommerce-Webshop."
 
-msgid "To use this extension, a VR Payment account is required. Sign up on"
+msgid "To use this extension, a WhiteLabelName account is required. Sign up on"
 msgstr "Um dieses Pluigin nutzen zu können, ist ein Konte auf dem VR Payment-Gateway erforderlich. Clicken Sie hier, um ein Konto im VR Payment-Gateway zu erstellen."
 
 msgid "Documentation"

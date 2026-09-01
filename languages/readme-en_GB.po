@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: vrpayment-woo\n"
+"Project-Id-Version: whitelabelmachinename-woo\n"
 "Language: en_GB\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
@@ -13,13 +13,13 @@ msgstr "Description"
 msgid "Website:"
 msgstr "Website:"
 
-msgid "The plugin offers an easy and convenient way to accept credit cards and all other payment methods, offered by VR Payment fast and securely. The payment forms will be fully integrated in your checkout and for credit cards there is no redirection to a payment page needed anymore. The pages are by default mobile optimized but the look and feel can be changed according the merchants needs."
+msgid "The plugin offers an easy and convenient way to accept credit cards and all other payment methods, offered by WhiteLabelName fast and securely. The payment forms will be fully integrated in your checkout and for credit cards there is no redirection to a payment page needed anymore. The pages are by default mobile optimized but the look and feel can be changed according the merchants needs."
 msgstr "The plugin offers an easy and convenient way to accept credit cards and all other payment methods, offered by VR Payment fast and securely. The payment forms will be fully integrated in your checkout and for credit cards there is no redirection to a payment page needed anymore. The pages are by default mobile optimized but the look and feel can be changed according the merchants needs."
 
-msgid "This plugin will add support for all VR Payment payments methods and connect the VR Payment servers to your WooCommerce webshop."
+msgid "This plugin will add support for all WhiteLabelName payments methods and connect the WhiteLabelName servers to your WooCommerce webshop."
 msgstr "This plugin will add support for all VR Payment payments methods and connect the VR Payment servers to your WooCommerce webshop."
 
-msgid "To use this extension, a VR Payment account is required. Sign up on"
+msgid "To use this extension, a WhiteLabelName account is required. Sign up on"
 msgstr "To use this extension, a VR Payment account is required. Sign up on"
 
 msgid "Documentation"
