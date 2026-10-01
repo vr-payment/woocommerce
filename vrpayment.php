@@ -1214,24 +1214,31 @@ if ( ! class_exists( 'WooCommerce_VRPayment' ) ) {
 		 */
 		public function modify_form_fields_args( $arguments, $key, $value = null ) { //phpcs:ignore
 			if ( 'billing_company' === $key ) {
+				$arguments['class'] = isset( $arguments['class'] ) ? (array) $arguments['class'] : [];
 				$arguments['class'][] = 'address-field';
 			}
 			if ( 'billing_email' === $key ) {
+				$arguments['class'] = isset( $arguments['class'] ) ? (array) $arguments['class'] : [];
 				$arguments['class'][] = 'address-field';
 			}
 			if ( 'billing_phone' === $key ) {
+				$arguments['class'] = isset( $arguments['class'] ) ? (array) $arguments['class'] : [];
 				$arguments['class'][] = 'address-field';
 			}
 			if ( 'billing_first_name' === $key ) {
+				$arguments['class'] = isset( $arguments['class'] ) ? (array) $arguments['class'] : [];
 				$arguments['class'][] = 'address-field';
 			}
 			if ( 'billing_last_name' === $key ) {
+				$arguments['class'] = isset( $arguments['class'] ) ? (array) $arguments['class'] : [];
 				$arguments['class'][] = 'address-field';
 			}
 			if ( 'shipping_first_name' === $key ) {
+				$arguments['class'] = isset( $arguments['class'] ) ? (array) $arguments['class'] : [];
 				$arguments['class'][] = 'address-field';
 			}
 			if ( 'shipping_last_name' === $key ) {
+				$arguments['class'] = isset( $arguments['class'] ) ? (array) $arguments['class'] : [];
 				$arguments['class'][] = 'address-field';
 			}
 
