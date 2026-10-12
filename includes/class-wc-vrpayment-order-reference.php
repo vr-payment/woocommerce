@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: VRPayment
  * Author: VR Payment GmbH

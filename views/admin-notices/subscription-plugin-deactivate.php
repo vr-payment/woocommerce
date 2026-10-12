@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 <div class="error notice notice-error">
-    <p>
-        <?php esc_html_e( 'VR Payment Subscription plugin has been deactivated because subscriptions are now handled directly by the VR Payment plugin. You can safely remove the old plugin', 'woo-vrpayment' ); ?>
-    </p>
+	<p>
+		<?php esc_html_e( 'VR Payment Subscription plugin has been deactivated because subscriptions are now handled directly by the VR Payment plugin. You can safely remove the old plugin', 'woo-vrpayment' ); ?>
+	</p>
 </div>

@@ -21,7 +21,6 @@ defined( 'ABSPATH' ) || exit;
  *
  * This class provides constants for Gift Cards and serves as a placeholder for future improvements.
  */
-class WC_VRPayment_Packages_Gift_Card
-{
+class WC_VRPayment_Packages_Gift_Card {
 	const VRPAYMENT_GIFT_CARD = 'Gift Card';
 }
