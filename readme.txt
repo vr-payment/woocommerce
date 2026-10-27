@@ -3,7 +3,7 @@ Contributors: VR Payment GmbH
 Tags: payment, VR Payment, e-commerce, invoice, psp
 Requires at least: 6.0
 Tested up to: 7.1.2
-Stable tag: 3.4.9
+Stable tag: 3.4.10
 License: Apache-2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -21,7 +21,7 @@ To use this extension, a VR Payment account is required. Sign up on [VR Payment]
 == Documentation ==
 
 Additional documentation for this plugin is available:
-[here](https://docs.plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.4.9/docs/en/documentation.html).
+[here](https://docs.plugin-documentation.vr-payment.de/vr-payment/woocommerce/3.4.10/docs/en/documentation.html).
 
 == Support ==
 Our technical support is available 24/7 at gateway@vr-payment.de or by phone at +49 (0)721 1209-66004.
@@ -93,10 +93,9 @@ For a complete list of payment methods, please refer to the VR-Payment Gateway u
 
 == Changelog ==
 
-= 3.4.9 - October 7 2026 =
-- [Feature] Tested against Wordpress 7.1.2
-- [Bugfix] Fixed issue where translations for payment methods were incorrect
-- [Tested Against] PHP 8.4.20
+= 3.4.10 - October 15 2026 =
+- [BugFix] Fixed fatal error during the plugin update when updating from 3.4.7 or older
+- [Tested Against] PHP 8.4.27
 - [Tested Against] Wordpress 7.1.2
-- [Tested Against] Woocommerce 11.2.0
+- [Tested Against] Woocommerce 11.2.1
 - [Tested Against] PHP SDK 4.9.2

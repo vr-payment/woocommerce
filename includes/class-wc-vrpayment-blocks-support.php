@@ -56,7 +56,18 @@ final class WC_VRPayment_Blocks_Support extends AbstractPaymentMethodType {
 	 */
 	public function get_payment_method_script_handles() {
 		$dependencies = array();
-		$version = '3.4.9';
+		$version = '3.4.10';
+		$asset_file = WooCommerce_VRPayment::instance()->plugin_path() . '/assets/js/frontend/blocks/build/index.asset.php';
+
+		if ( file_exists( $asset_file ) ) {
+			$asset = require $asset_file;
+
+			// Content hash of the generated bundle. It changes on every rebuild, so browsers
+			// stop serving a cached copy of the previous build.
+			if ( isset( $asset['version'] ) ) {
+				$version = $asset['version'];
+			}
+		}
 
 		wp_register_script(
 			'WooCommerce_VRPayment_blocks_support',
@@ -74,6 +85,7 @@ final class WC_VRPayment_Blocks_Support extends AbstractPaymentMethodType {
 				'i18n' => array(
 					'loading' => __( 'Loading payment method...', 'woo-vrpayment' ),
 					'load_error' => __( 'Unable to load this payment method. Please refresh the page and try again.', 'woo-vrpayment' ),
+					'validation_error' => __( 'The payment details are invalid. Please check them and try again.', 'woo-vrpayment' ),
 				),
 			)
 		);
